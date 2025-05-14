@@ -7,16 +7,10 @@ function App() {
     fetch(import.meta.env.VITE_GRAPHQL_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        query: `
-          query {
-            hello
-          }
-        `
-      })
+      body: JSON.stringify({ query: `{ hello }` })
     })
       .then(res => res.json())
-      .then(result => setData(result?.data?.hello || 'No data'));
+      .then(res => setData(res.data?.hello || 'No response'));
   }, []);
 
   return (
