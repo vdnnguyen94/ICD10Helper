@@ -34,13 +34,15 @@ A stateless web application that helps healthcare professionals and students sea
 ---
 
 ## 🧭 Project Structure (Monorepo)
+\`\`\`
 medical-coder-app/
-├── client/ # React frontend (Vite or CRA)
-├── server/ # NestJS backend (GraphQL + MongoDB)
-├── shared/ # Optional shared types
-├── .github/workflows/ # GitHub Actions CI/CD
+├── client/               # React frontend (Vite or CRA)
+├── server/               # NestJS backend (GraphQL + MongoDB)
+├── shared/               # Optional shared types
+├── .github/workflows/    # GitHub Actions CI/CD
 ├── README.md
 └── package.json
+\`\`\`
 
 
 ---
