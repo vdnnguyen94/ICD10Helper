@@ -2,7 +2,24 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type ICD10Code {
+  code: String!
+  type: String!
+  description: String
+  notes: String
+}
+
+type ICD10CodeResponse {
+  codes: [ICD10Code!]!
+  status: String!
+}
+
 type Query {
   hello: String!
   checkEnv: String!
+  lookupICD10(term: String!): ICD10CodeResponse!
+}
+
+type Mutation {
+  lookupICD10Mutation(term: String!): ICD10CodeResponse!
 }
