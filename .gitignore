@@ -30,3 +30,4 @@ build/
 # Monorepo-specific
 client/dist/
 server/dist/
+server/gcp-key.json

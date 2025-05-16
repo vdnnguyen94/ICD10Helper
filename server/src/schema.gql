@@ -21,5 +21,7 @@ type Query {
 }
 
 type Mutation {
-  lookupICD10Mutation(term: String!): ICD10CodeResponse!
+  lookupWithOpenAI(term: String!): ICD10CodeResponse!
+  lookupWithGemini(term: String!): ICD10CodeResponse!
+  lookupDualAI(term: String!): [ICD10CodeResponse!]!
 }
