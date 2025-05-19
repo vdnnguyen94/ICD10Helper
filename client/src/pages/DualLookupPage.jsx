@@ -1,7 +1,7 @@
 // client/src/pages/HomePage.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { gql, useQuery, useMutation } from '@apollo/client';
-import { Search, AlertCircle, CheckCircle, Info, BarChart2, ArrowRightCircle, Eye } from 'lucide-react'; // Using lucide-react for icons
+import { Search, AlertCircle, CheckCircle, Info, Eye, Zap, ListChecks, BrainCog, ChevronRight } from 'lucide-react'; // Added Zap, ListChecks, BrainCog, ChevronRight
 
 // GraphQL Queries and Mutations
 const GET_LOOKUP_COUNT = gql`
@@ -80,18 +80,83 @@ const AIResultCard = ({ result, modelName, isLoading }) => {
   );
 };
 
+// Data for example terminologies
+const exampleCategories = [
+  {
+    title: "Common & External Causes",
+    icon: Zap,
+    color: "text-yellow-400",
+    terms: [
+      "Poisoning by Paracetamol, intentional self-harm",
+      "Fall from balcony",
+      "Struck by falling object",
+      "Burn, second degree, of forearm"
+    ]
+  },
+  {
+    title: "NEC & Specific Conditions",
+    icon: ListChecks,
+    color: "text-blue-400",
+    terms: [
+      "Pneumonia due to Klebsiella pneumoniae",
+      "Viral gastroenteritis, unspecified",
+      "Anemia in neoplastic disease (NEC)",
+      "Urinary tract infection, site not specified"
+    ]
+  },
+  {
+    title: "Complex Terminology",
+    icon: BrainCog,
+    color: "text-purple-400",
+    terms: [
+      "Myelopathy due to displaced cervical intervertebral disc",
+      "Chronic kidney disease, stage 3, due to type 2 diabetes mellitus",
+      "Acute on chronic systolic congestive heart failure",
+      "Postoperative sepsis following abdominal surgery"
+    ]
+  }
+];
+
+// Component for rendering each example card
+const ExampleCard = ({ category, onTermSelect }) => {
+  const IconComponent = category.icon;
+  return (
+    <div className="bg-slate-800 p-6 rounded-xl shadow-xl border border-slate-700 hover:shadow-lg hover:border-slate-600 transition-all duration-300 flex flex-col">
+      <div className="flex items-center mb-4">
+        <IconComponent size={24} className={`${category.color} mr-3`} />
+        <h3 className={`text-xl font-semibold ${category.color}`}>{category.title}</h3>
+      </div>
+      <ul className="space-y-3 flex-grow">
+        {category.terms.map((term, index) => (
+          <li key={index} className="text-sm text-slate-300 flex justify-between items-center">
+            <span>{term}</span>
+            <button
+              onClick={() => onTermSelect(term)}
+              className={`ml-2 p-2 rounded-md ${category.color.replace('text-', 'bg-')}/20 hover:${category.color.replace('text-', 'bg-')}/40 transition-colors`}
+              title={`Lookup: ${term}`}
+            >
+              <ChevronRight size={18} className={category.color} />
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
 
 export default function HomePage() {
   const [term, setTerm] = useState('');
   const [results, setResults] = useState(null);
   const [error, setError] = useState(null);
+  const lookupSectionRef = useRef(null); // Ref for scrolling
 
   // Query for lookup count
   const { data: countData, loading: countLoading, error: countError } = useQuery(GET_LOOKUP_COUNT);
 
   // Mutation for incrementing lookup count
   const [incrementCount] = useMutation(INCREMENT_LOOKUP_COUNT, {
-    refetchQueries: [{ query: GET_LOOKUP_COUNT }], // Refetch count after incrementing
+    refetchQueries: [{ query: GET_LOOKUP_COUNT }],
   });
 
   // Mutation for AI lookup
@@ -99,7 +164,7 @@ export default function HomePage() {
     onCompleted: (data) => {
       setResults(data.lookupDualAI);
       setError(null);
-      incrementCount(); // Increment count on successful lookup
+      incrementCount(); 
     },
     onError: (err) => {
       setError(err.message);
@@ -108,18 +173,32 @@ export default function HomePage() {
     },
   });
 
-  const handleLookup = (e) => {
-    e.preventDefault();
-    if (!term.trim()) {
+  const performLookup = (searchTerm) => {
+    if (!searchTerm.trim()) {
       setError('Please enter a medical term to search.');
+      setResults(null); // Clear previous results if search term is empty
       return;
     }
-    lookupDualAI({ variables: { term } });
+    setError(null); // Clear previous errors
+    setResults(null); // Clear previous results before new search
+    lookupDualAI({ variables: { term: searchTerm } });
+    if (lookupSectionRef.current) {
+      lookupSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    performLookup(term);
+  };
+
+  const handleExampleTermSelect = (exampleTerm) => {
+    setTerm(exampleTerm); // Set the input field with the example term
+    performLookup(exampleTerm);
   };
   
-  // Effect to clear error when term changes
   useEffect(() => {
-    if (term) setError(null);
+    if (term) setError(null); // Clear error if user starts typing
   }, [term]);
 
   return (
@@ -139,7 +218,7 @@ export default function HomePage() {
         </header>
 
         {/* Overview/Benefits Section */}
-        <section className="mb-12 bg-slate-800/50 p-8 rounded-xl shadow-2xl border border-slate-700">
+        <section className="mb-16 bg-slate-800/50 p-8 rounded-xl shadow-2xl border border-slate-700">
           <h2 className="text-3xl font-semibold mb-6 text-cyan-400 flex items-center">
             <Info size={28} className="mr-3 text-cyan-500" />
             Why Choose ICD-10 CA Helper?
@@ -165,7 +244,7 @@ export default function HomePage() {
         </section>
 
         {/* Usage Counter Section */}
-        <section className="mb-12 text-center">
+        <section className="mb-16 text-center">
             <div className="inline-flex items-center bg-gradient-to-r from-sky-500 to-cyan-500 text-white py-4 px-8 rounded-lg shadow-xl">
                 <Eye size={32} className="mr-4" />
                 <div>
@@ -178,15 +257,28 @@ export default function HomePage() {
                 </div>
             </div>
         </section>
+        
+        {/* Quick Lookup Examples Section - NEW */}
+        <section className="mb-16">
+            <h2 className="text-3xl font-semibold mb-8 text-center text-cyan-400 flex items-center justify-center">
+                <Zap size={28} className="mr-3 text-cyan-500" />
+                Quick Lookup Examples
+            </h2>
+            <div className="grid md:grid-cols-3 gap-8">
+                {exampleCategories.map((category, index) => (
+                    <ExampleCard key={index} category={category} onTermSelect={handleExampleTermSelect} />
+                ))}
+            </div>
+        </section>
 
 
         {/* Terminology Lookup Section */}
-        <section className="mb-12 bg-slate-800/50 p-8 rounded-xl shadow-2xl border border-slate-700">
+        <section ref={lookupSectionRef} className="mb-12 bg-slate-800/50 p-8 rounded-xl shadow-2xl border border-slate-700">
           <h2 className="text-3xl font-semibold mb-6 text-cyan-400 flex items-center">
             <Search size={28} className="mr-3 text-cyan-500" />
             Dual AI ICD-10 CA Code Lookup
           </h2>
-          <form onSubmit={handleLookup} className="mb-8 flex flex-col sm:flex-row gap-4 items-center">
+          <form onSubmit={handleFormSubmit} className="mb-8 flex flex-col sm:flex-row gap-4 items-center">
             <input
               type="text"
               value={term}
@@ -199,7 +291,7 @@ export default function HomePage() {
               disabled={lookupLoading}
               className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-sky-600 hover:from-cyan-600 hover:to-sky-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
             >
-              {lookupLoading ? (
+              {lookupLoading && term ? ( // Show loading only if a term is being searched
                 <>
                   <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -221,11 +313,20 @@ export default function HomePage() {
               {error}
             </div>
           )}
+          
+          {/* Conditional rendering for loading state specifically for AI cards */}
+          {lookupLoading && (!results || results.length === 0) && (
+             <div className="grid md:grid-cols-2 gap-8">
+                <AIResultCard result={null} modelName="AI Model 1 (OpenAI GPT-4o)" isLoading={true} />
+                <AIResultCard result={null} modelName="AI Model 2 (Gemini Pro)" isLoading={true} />
+            </div>
+          )}
 
-          {results && Array.isArray(results) && (
+          {/* Render results only when not loading and results are available */}
+          {!lookupLoading && results && Array.isArray(results) && (
             <div className="grid md:grid-cols-2 gap-8">
-              <AIResultCard result={results[0]} modelName="AI Model 1 (OpenAI GPT-4o)" isLoading={lookupLoading && !results} />
-              <AIResultCard result={results[1]} modelName="AI Model 2 (Gemini Pro)" isLoading={lookupLoading && !results} />
+              <AIResultCard result={results[0]} modelName="AI Model 1 (OpenAI GPT-4o)" isLoading={false} />
+              <AIResultCard result={results[1]} modelName="AI Model 2 (Gemini Pro)" isLoading={false} />
             </div>
           )}
         </section>
