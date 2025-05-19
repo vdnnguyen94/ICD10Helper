@@ -18,10 +18,12 @@ type Query {
   hello: String!
   checkEnv: String!
   lookupICD10(term: String!): ICD10CodeResponse!
+  lookupCount: Float!
 }
 
 type Mutation {
   lookupWithOpenAI(term: String!): ICD10CodeResponse!
   lookupWithGemini(term: String!): ICD10CodeResponse!
   lookupDualAI(term: String!): [ICD10CodeResponse!]!
+  incrementLookupCount: Float!
 }
