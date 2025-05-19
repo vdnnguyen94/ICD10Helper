@@ -23,11 +23,7 @@ const titles = {
 
 function Header() {
   const { pathname } = useLocation();
-  return (
-    <header className="bg-slate-dark text-white py-4 px-6 shadow-md">
-      <h1 className="text-2xl font-mono">{titles[pathname] || ''}</h1>
-    </header>
-  );
+
 }
 
 function NavBar() {
@@ -44,10 +40,10 @@ function NavBar() {
         Home
       </NavLink>
       <NavLink to="/outpatient" className={linkClasses}>
-        Outpatient
+        Outpatient Coding
       </NavLink>
       <NavLink to="/inpatient" className={linkClasses}>
-        Inpatient
+        Inpatient Coding
       </NavLink>
       <NavLink to="/contact" className={linkClasses}>
         Contact

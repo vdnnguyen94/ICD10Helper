@@ -4,5 +4,25 @@
 @tailwind utilities;
 
 body {
-  @apply bg-slate-900 text-gray-100 font-sans;
+  @apply bg-slate-900 text-gray-100 font-sans antialiased; /* Added antialiased for smoother fonts */
+}
+
+/* Custom scrollbar for a more modern look (optional) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-slate-700 rounded-full;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-sky-500 rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-sky-400;
+}
+
+/* Ensuring full height for html and body for min-h-screen to work effectively */
+html, body, #root {
+  height: 100%;
 }

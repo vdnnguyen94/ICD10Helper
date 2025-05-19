@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg 
+  xmlns="http://www.w3.org/2000/svg" 
+  width="128" height="128" 
+  viewBox="0 0 128 128"
+  role="img" aria-labelledby="title">
+  <title id="title">ICD10Helper Cross Logo</title>
+
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1E293B"/>
+      <stop offset="100%" stop-color="#14B8A6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Horizontal bar: spans almost full width -->
+  <rect x="4" y="45" width="120" height="32" 
+        fill="url(#grad)" rx="4"/>
+
+  <!-- Vertical bar: spans almost full height -->
+  <rect x="48" y="4" width="32" height="120" 
+        fill="url(#grad)" rx="4"/>
+
+  <!-- "ICD10" in the center of the cross -->
+  <text
+    x="26" y="62"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-family="Inter, sans-serif"
+    font-size="20"
+    font-weight="600"
+    fill="#FFFFFF">
+    ICD
+  </text>
+  <text
+    x="100" y="62"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-family="Inter, sans-serif"
+    font-size="20"
+    font-weight="600"
+    fill="#FFFFFF">
+    10
+  </text>
+  <!-- "HELPER" rotated into the vertical bar -->
+  <text
+    x="60" y="66"
+    text-anchor="middle"
+    dominant-baseline="middle"
+    font-family="Inter, sans-serif"
+    font-size="20"
+    font-weight="600"
+    fill="#FFFFFF"
+    transform="rotate(-90 64 64)">
+    HELPER
+  </text>
+</svg>
