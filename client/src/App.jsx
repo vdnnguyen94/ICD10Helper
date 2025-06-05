@@ -11,6 +11,7 @@ import Footer from './pages/FooterPage'; //
 // Import the new page components
 import HomePage from './pages/HomePage';
 import ICD10LookupPage from './pages/ICD10LookupPage';
+import CCILookupPage from './pages/CCILookupPage';
 import OutpatientPage from './pages/OutPatientPage'; //
 import InpatientPage from './pages/InPatientPage'; //
 import ContactPage from './pages/ContactPage'; //
@@ -73,7 +74,7 @@ export default function App() { //
             <Route path="/" element={<HomePage />} />
             <Route path="/icd10-lookup" element={<ICD10LookupPage />} />
             {/* Placeholder route for CCI - to be created */}
-            <Route path="/cci-lookup" element={<div>CCI Lookup Page (Coming Soon)</div>} />
+            <Route path="/cci-lookup" element={<CCILookupPage />} />
             <Route path="/outpatient" element={<OutpatientPage />} /> {/* */}
             <Route path="/inpatient" element={<InpatientPage />} /> {/* */}
             <Route path="/contact" element={<ContactPage />} /> {/* */}

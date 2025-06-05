@@ -1,10 +1,9 @@
 // client/src/pages/ICD10LookupPage.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import { gql, useMutation, useQuery } from '@apollo/client';
-// Corrected import: Added ListChecks
 import { Search, AlertCircle, CheckCircle, Info, Eye, ChevronRight, ListCollapse, ListTree, EyeOff, ListChecks } from 'lucide-react';
 
-// GraphQL Queries and Mutations
+// GraphQL Queries and Mutations (assuming these are already defined correctly)
 const GET_LOOKUP_COUNT = gql`
   query GetLookupCount {
     lookupCount
@@ -31,11 +30,11 @@ const LOOKUP_DUAL_AI = gql`
   }
 `;
 
-// Data for example terminologies - moved here
+// Data for example terminologies (assuming this is already defined correctly)
 const exampleCategories = [
   {
     title: "Common & External Causes",
-    icon: ListTree, // Changed icon for variety
+    icon: ListTree,
     color: "text-yellow-400",
     terms: [
       "Poisoning by Paracetamol, intentional self-harm",
@@ -46,7 +45,7 @@ const exampleCategories = [
   },
   {
     title: "NEC & Specific Conditions",
-    icon: ListChecks, // This icon is now correctly imported
+    icon: ListChecks,
     color: "text-blue-400",
     terms: [
       "Pneumonia due to Klebsiella pneumoniae",
@@ -57,7 +56,7 @@ const exampleCategories = [
   },
   {
     title: "Complex Terminology",
-    icon: ListCollapse, // Changed icon
+    icon: ListCollapse,
     color: "text-purple-400",
     terms: [
       "Myelopathy due to displaced cervical intervertebral disc",
@@ -68,7 +67,7 @@ const exampleCategories = [
   }
 ];
 
-// Component for rendering each example card - moved here
+// ExampleCard and AIResultCard components (assuming these are already defined correctly)
 const ExampleCard = ({ category, onTermSelect }) => {
   const IconComponent = category.icon;
   return (
@@ -95,8 +94,6 @@ const ExampleCard = ({ category, onTermSelect }) => {
   );
 };
 
-
-// Helper component to display individual AI results (same as before)
 const AIResultCard = ({ result, modelName, isLoading }) => {
   if (isLoading) {
     return (
@@ -146,12 +143,16 @@ const AIResultCard = ({ result, modelName, isLoading }) => {
   );
 };
 
+
 export default function ICD10LookupPage() {
   const [term, setTerm] = useState('');
   const [results, setResults] = useState(null);
   const [error, setError] = useState(null);
-  const [showExamples, setShowExamples] = useState(true); // State for example visibility
-  const lookupSectionRef = useRef(null); // To scroll to results
+  const [showExamples, setShowExamples] = useState(true);
+  const lookupSectionRef = useRef(null);
+
+  // New state for dynamic loading messages
+  const [loadingMessage, setLoadingMessage] = useState("Searching...");
 
   const { data: countData, loading: countLoading, error: countError } = useQuery(GET_LOOKUP_COUNT);
   const [incrementCount] = useMutation(INCREMENT_LOOKUP_COUNT, {
@@ -162,10 +163,10 @@ export default function ICD10LookupPage() {
     onCompleted: (data) => {
       setResults(data.lookupDualAI);
       setError(null);
-      incrementCount(); 
+      incrementCount();
       if (lookupSectionRef.current) {
-         setTimeout(() => { 
-            lookupSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setTimeout(() => {
+          lookupSectionRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 100);
       }
     },
@@ -176,6 +177,37 @@ export default function ICD10LookupPage() {
     },
   });
 
+  // Effect to cycle through loading messages
+  useEffect(() => {
+    let messageTimerId;
+    if (lookupLoading) {
+      const messages = [
+        "Initializing AI Co-pilots...",
+        "Analyzing Your Query...",
+        "Consulting Knowledge Base...",
+        "Cross-Referencing Standards...",
+        "Compiling Potential Codes...",
+        "Validating Suggestions...",
+        "Almost There, Finalizing..."
+      ];
+      let currentMessageIndex = 0;
+      setLoadingMessage(messages[currentMessageIndex]); // Set initial message
+
+      const changeMessage = () => {
+        currentMessageIndex = (currentMessageIndex + 1) % messages.length;
+        setLoadingMessage(messages[currentMessageIndex]);
+      };
+      messageTimerId = setInterval(changeMessage, 8000); // Change message every 8 seconds
+    } else {
+      setLoadingMessage("Searching..."); // Reset to default when not loading
+    }
+
+    return () => {
+      clearInterval(messageTimerId); // Cleanup interval
+    };
+  }, [lookupLoading]);
+
+
   const performLookup = (searchTermToLookup) => {
     if (!searchTermToLookup.trim()) {
       setError('Please enter a medical term to search for ICD-10 CA codes.');
@@ -183,7 +215,7 @@ export default function ICD10LookupPage() {
       return;
     }
     setError(null);
-    setResults(null); 
+    setResults(null);
     lookupDualAI({ variables: { term: searchTermToLookup } });
   };
 
@@ -193,10 +225,10 @@ export default function ICD10LookupPage() {
   };
 
   const handleExampleTermSelect = (exampleTerm) => {
-    setTerm(exampleTerm); 
-    performLookup(exampleTerm); 
+    setTerm(exampleTerm);
+    performLookup(exampleTerm);
   };
-  
+
   useEffect(() => {
     if (term && error) setError(null);
   }, [term, error]);
@@ -213,37 +245,37 @@ export default function ICD10LookupPage() {
           <p className="text-lg text-slate-300 max-w-xl mx-auto mt-2">
             Enter a diagnosis term or use the examples to get AI-powered ICD-10 CA code suggestions.
           </p>
-            {!countLoading && countData && (
-                <div className="mt-4 text-sm text-sky-300">
-                    <Eye size={16} className="inline mr-1" />
-                    Total Lookups Performed: <span className="font-bold">{countData.lookupCount}</span>
-                </div>
-            )}
-            {countError && <p className="text-xs text-red-400 mt-1">Could not load lookup count.</p>}
+          {!countLoading && countData && (
+            <div className="mt-4 text-sm text-sky-300">
+              <Eye size={16} className="inline mr-1" />
+              Total Lookups Performed: <span className="font-bold">{countData.lookupCount}</span>
+            </div>
+          )}
+          {countError && <p className="text-xs text-red-400 mt-1">Could not load lookup count.</p>}
         </header>
 
         <div className="mb-6 text-center">
-            <button
-                onClick={() => setShowExamples(!showExamples)}
-                className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-sky-300 rounded-md text-sm flex items-center mx-auto"
-            >
-                {showExamples ? <EyeOff size={18} className="mr-2" /> : <Eye size={18} className="mr-2" />}
-                {showExamples ? 'Hide Quick Examples' : 'Show Quick Examples'}
-            </button>
+          <button
+            onClick={() => setShowExamples(!showExamples)}
+            className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-sky-300 rounded-md text-sm flex items-center mx-auto"
+          >
+            {showExamples ? <EyeOff size={18} className="mr-2" /> : <Eye size={18} className="mr-2" />}
+            {showExamples ? 'Hide Quick Examples' : 'Show Quick Examples'}
+          </button>
         </div>
 
         {showExamples && (
-            <section className="mb-12">
-                <h2 className="text-2xl font-semibold mb-6 text-center text-teal-400 flex items-center justify-center">
-                    <ListTree size={24} className="mr-3 text-teal-500" /> {/* This was ListTree, could be Zap or another as well if preferred */}
-                    Quick Lookup Examples (ICD-10 CA)
-                </h2>
-                <div className="grid md:grid-cols-3 gap-6">
-                    {exampleCategories.map((category, index) => (
-                        <ExampleCard key={index} category={category} onTermSelect={handleExampleTermSelect} />
-                    ))}
-                </div>
-            </section>
+          <section className="mb-12">
+            <h2 className="text-2xl font-semibold mb-6 text-center text-teal-400 flex items-center justify-center">
+              <ListTree size={24} className="mr-3 text-teal-500" />
+              Quick Lookup Examples (ICD-10 CA)
+            </h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              {exampleCategories.map((category, index) => (
+                <ExampleCard key={index} category={category} onTermSelect={handleExampleTermSelect} />
+              ))}
+            </div>
+          </section>
         )}
 
         <section ref={lookupSectionRef} className="mb-12 bg-slate-800/50 p-8 rounded-xl shadow-2xl border border-slate-700">
@@ -262,15 +294,15 @@ export default function ICD10LookupPage() {
             <button
               type="submit"
               disabled={lookupLoading}
-              className="w-full sm:w-auto bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-600 hover:to-emerald-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+              className="w-full sm:w-auto bg-gradient-to-r from-teal-500 to-emerald-600 hover:from-teal-600 hover:to-emerald-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[180px]" // Added min-w for button consistency
             >
-              {lookupLoading ? ( 
+              {lookupLoading ? (
                 <>
                   <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                     <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
-                  Searching...
+                  {loadingMessage} {/* Display dynamic loading message */}
                 </>
               ) : (
                 <>
@@ -280,6 +312,7 @@ export default function ICD10LookupPage() {
             </button>
           </form>
 
+          {/* Results display remains the same */}
           {error && (
             <div className="mb-6 p-4 bg-red-500/20 text-red-300 border border-red-500 rounded-lg flex items-center">
               <AlertCircle size={20} className="mr-3 text-red-400" />
