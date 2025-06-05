@@ -14,6 +14,62 @@ type ICD10CodeResponse {
   status: String!
 }
 
+type CCICodeBreakdownField {
+  """
+  The code for this specific field component (e.g., "1", "AN"). Can be empty for optional fields like tissue if not applicable.
+  """
+  code: String!
+
+  """
+  The description of this field component (e.g., "Physical/Physiological Therapeutic Interventions").
+  """
+  description: String
+}
+
+type CCICodeBreakdown {
+  """Field 1: Section"""
+  field1_section: CCICodeBreakdownField!
+
+  """Field 2: Anatomy Site (Group)"""
+  field2_anatomySite: CCICodeBreakdownField!
+
+  """Field 3: Intervention"""
+  field3_intervention: CCICodeBreakdownField!
+
+  """Field 4: Qualifier 1 (Approach/Technique)"""
+  field4_qualifier1_approachTechnique: CCICodeBreakdownField!
+
+  """Field 5: Qualifier 2 (Agent or Device)"""
+  field5_qualifier2_agentOrDevice: CCICodeBreakdownField!
+
+  """
+  Field 6: Qualifier 3 (Tissue). May not always be present or applicable.
+  """
+  field6_qualifier3_tissue: CCICodeBreakdownField
+}
+
+type CCICode {
+  """The full CCI code."""
+  cciCode: String!
+
+  """A general description of the CCI code."""
+  description: String
+
+  """Detailed breakdown of the CCI code components."""
+  breakdown: CCICodeBreakdown!
+
+  """Additional notes or coding guidance."""
+  notes: String
+}
+
+type CCIResponse {
+  """A list of found CCI codes with their breakdowns."""
+  codes: [CCICode!]!
+
+  """Status of the lookup: "matched", "partial", or "not_found"."""
+  status: String!
+}
+
 type Query {
   hello: String!
   checkEnv: String!
@@ -25,5 +81,23 @@ type Mutation {
   lookupWithOpenAI(term: String!): ICD10CodeResponse!
   lookupWithGemini(term: String!): ICD10CodeResponse!
   lookupDualAI(term: String!): [ICD10CodeResponse!]!
+
+  """Performs CCI lookup using OpenAI GPT-4o."""
+  lookupCCIWithOpenAI(
+    """The intervention term or scenario to look up."""
+    term: String!
+  ): CCIResponse!
+
+  """Performs CCI lookup using Google Gemini."""
+  lookupCCIWithGemini(
+    """The intervention term or scenario to look up."""
+    term: String!
+  ): CCIResponse!
+
+  """Performs CCI lookup using both OpenAI and Gemini in parallel."""
+  lookupDualCCI(
+    """The intervention term or scenario to look up."""
+    term: String!
+  ): [CCIResponse!]!
   incrementLookupCount: Float!
 }

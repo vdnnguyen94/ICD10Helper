@@ -7,6 +7,7 @@ import { join } from 'path';
 
 import { AppResolver } from './app.resolver';
 import { ICD10Resolver } from './resolvers/icd10.resolver';
+import { CCIResolver } from './resolvers/cci.resolver'; 
 import { OpenAIService } from './openai.service';
 import { GeminiService } from './gemini.service';
 import { CounterService } from './counter/counter.service';
@@ -27,6 +28,7 @@ dotenv.config();
   providers: [
     AppResolver,
     ICD10Resolver,
+    CCIResolver,
     OpenAIService,
     GeminiService,
     CounterService,
