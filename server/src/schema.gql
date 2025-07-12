@@ -70,11 +70,75 @@ type CCIResponse {
   status: String!
 }
 
+"""Enhanced CCI catalog item with qualifiers and attributes"""
+type CciEnhancedCatalogItem {
+  """CCI code, e.g. 1.AN.87"""
+  code: String!
+
+  """Primary description of the CCI rubric"""
+  description: String!
+
+  """Includes list from the rubric"""
+  includes: [String!]!
+
+  """Excludes list from the rubric"""
+  excludes: [String!]!
+
+  """Additional code references ("Code Also")"""
+  codeAlso: [String!]!
+
+  """Notes array from the rubric"""
+  note: [String!]!
+
+  """All available qualifiers"""
+  otherQualifiers: [QualifierDto!]!
+
+  """Applicable qualifiers for this scenario"""
+  appliedQualifiers: [QualifierDto!]!
+
+  """All coding attributes and definitions"""
+  allAttributes: [AttributeDto!]!
+
+  """Applied attributes for this scenario"""
+  appliedAttributes: [AttributeDto!]!
+
+  """Cosine similarity score from vector search"""
+  similarityScore: Float
+}
+
+"""Qualifier code entry"""
+type QualifierDto {
+  code: String!
+  approach: String!
+  description: String!
+  includes: [String!]!
+}
+
+"""Coding attribute entry"""
+type AttributeDto {
+  name: String!
+  code: String!
+  description: String!
+}
+
+"""Response wrapper for enhanced CCI vector search"""
+type CciEnhancedResponseDto {
+  """Top-K enhanced CCI catalog items with full details"""
+  items: [CciEnhancedCatalogItem!]!
+
+  """Overall status: matched | partial | not_found"""
+  status: String!
+
+  """Time taken for vector search in milliseconds"""
+  searchTimeMs: Float
+}
+
 type Query {
   hello: String!
   checkEnv: String!
   lookupICD10(term: String!): ICD10CodeResponse!
   lookupCount: Float!
+  cciEnhancedSearch(term: String!): CciEnhancedResponseDto!
 }
 
 type Mutation {

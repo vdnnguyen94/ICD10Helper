@@ -1,63 +1,35 @@
-// src/openai.service.ts
-
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import OpenAI from 'openai';
 import * as dotenv from 'dotenv';
-import { CCIResponse } from './dto/cci-response.type';
-import { ICD10CodeResponse } from './dto/icd10-response.type';
-
 dotenv.config();
+import { CCIResponse } from './dto/cci-response.type'; // Added import
+import { ICD10CodeResponse } from './dto/icd10-response.type'; // Ensure this is the correct path if you keep it here
+
 
 @Injectable()
 export class OpenAIService {
-  private readonly logger = new Logger(OpenAIService.name);
-  private readonly client: OpenAI;
-
-  // Centralize model names for easier updates
-  private readonly embeddingModel = process.env.OPENAI_EMBEDDING_MODEL || 'text-embedding-3-small';
-  private readonly chatModel = process.env.OPENAI_CHAT_MODEL || 'gpt-4o';
+  private openai: OpenAI;
 
   constructor() {
-    if (!process.env.OPENAI_API_KEY) {
-      throw new Error('OPENAI_API_KEY is not set in the environment variables.');
-    }
-    this.client = new OpenAI({
+    this.openai = new OpenAI({
       apiKey: process.env.OPENAI_API_KEY,
     });
   }
-
-  /**
-   * Creates a vector embedding for a given text input.
-   * This method is used by the vector search service.
-   * @param text The input string to embed.
-   * @returns A promise that resolves to a numerical vector embedding.
+   /**
+   * Produce a 1,536-dimensional embedding for any input text
    */
-  async createEmbedding(text: string): Promise<number[]> {
-    // Ensure input text is clean and not empty
-    const inputText = text.trim().replace(/\n/g, ' ');
-    if (!inputText) {
-      this.logger.warn('createEmbedding called with empty text.');
-      // Return a zero-vector or handle as an error, depending on desired behavior
-      return []; 
-    }
+  
+   async embedText(text: string): Promise<number[]> {
+     const resp = await this.openai.embeddings.create({
+       model:  process.env.OPENAI_EMBEDDING_MODEL!,
+       input:  text,
+     });
+     return resp.data[0].embedding;
+   }
+   
 
-    try {
-      const resp = await this.client.embeddings.create({
-        model: this.embeddingModel,
-        input: inputText,
-      });
-      return resp.data[0].embedding;
-    } catch (error) {
-      this.logger.error('Failed to create embedding from OpenAI', error);
-      throw new Error('Error in creating embedding.');
-    }
-  }
 
-  /**
-   * Looks up an ICD-10 code using the OpenAI chat model.
-   * @param term The diagnostic term to look up.
-   */
-  async lookupICD10(term: string): Promise<ICD10CodeResponse> {
+  async lookupICD10(term: string) {
     const systemPrompt = `You are a certified Canadian medical coder using ICD-10-CA. Respond with codes in strict JSON format for any diagnosis using this structure:
 {
   "codes": [
@@ -73,71 +45,31 @@ export class OpenAIService {
 
     const userPrompt = `Diagnosis: ${term}`;
 
+    const res = await this.openai.chat.completions.create({
+      model: 'gpt-4o',
+      temperature: 0.2,
+      max_tokens: 512,
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: userPrompt },
+      ],
+    });
+
+    const content = res.choices[0].message?.content;
+    console.log('GPT raw content:', content);
+    const cleanContent = content?.trim().replace(/^```json|```$/g, '').trim();
+    console.log('CLEAN CONTENT', cleanContent);
     try {
-      const res = await this.client.chat.completions.create({
-        model: this.chatModel,
-        temperature: 0.2,
-        max_tokens: 512,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: userPrompt },
-        ],
-        response_format: { type: "json_object" },
-      });
-
-      const content = res.choices[0].message?.content;
-      if (!content) {
-        this.logger.warn('OpenAI ICD-10 lookup returned empty content for term:', term);
-        return { codes: [], status: 'not_found' };
-      }
-
-      return JSON.parse(content) as ICD10CodeResponse;
+    return JSON.parse(cleanContent || '{}');
     } catch (err) {
-      this.logger.error('OpenAI ICD-10 lookup or JSON parsing failed:', err);
-      return { codes: [], status: 'not_found' };
+    console.error('JSON parse error:', err);
+    return {
+        codes: [],
+        status: 'not_found',
+    };
     }
   }
-
-  /**
-   * Looks up a CCI code using the OpenAI chat model.
-   * @param term The intervention term to look up.
-   */
-  async lookupCCI(term: string): Promise<CCIResponse> {
-    const systemPrompt = this.getCCISystemPrompt();
-    const userPrompt = `Intervention: ${term}`;
-
-    try {
-      const res = await this.client.chat.completions.create({
-        model: this.chatModel,
-        temperature: 0.2,
-        max_tokens: 2048,
-        messages: [
-          { role: 'system', content: systemPrompt },
-          { role: 'user', content: userPrompt },
-        ],
-        response_format: { type: "json_object" },
-      });
-
-      const content = res.choices[0].message?.content;
-
-      if (!content) {
-        this.logger.warn('OpenAI CCI lookup returned empty content for term:', term);
-        return { codes: [], status: 'not_found' };
-      }
-      
-      return JSON.parse(content) as CCIResponse;
-    } catch (err) {
-      this.logger.error('OpenAI CCI lookup or JSON parsing failed:', err);
-      return { codes: [], status: 'not_found' };
-    }
-  }
-
-  /**
-   * Returns the detailed system prompt for CCI code lookup.
-   */
   private getCCISystemPrompt(): string {
-    // The prompt you provided is very detailed and well-structured, which is excellent.
-    // No changes were needed here.
     return `You are an expert medical coder certified by the Canadian Institute for Health Information (CIHI), specializing in the Canadian Classification of Health Interventions (CCI). CCI is based on ICD-10-CA principles.
 Your task is to analyze the provided description of a medical intervention or procedure and return the most relevant CCI code(s).
 Always adhere to CIHI coding guidelines and standards for CCI.
@@ -175,4 +107,38 @@ Example of a "breakdown" sub-object for a code like "1.AN.09.JA.DV" (assuming ti
 If multiple distinct interventions are described or if multiple CCI codes could apply according to CIHI rules (e.g., combination codes, or equally valid alternatives), include each as a separate object within the "codes" array. Prioritize accuracy and adherence to CIHI CCI coding standards. Do not invent codes or descriptions.
 The user will provide the intervention term or scenario.`;
   }
+    async lookupCCI(term: string): Promise<CCIResponse> {
+    const systemPrompt = this.getCCISystemPrompt();
+    const userPrompt = `Intervention: ${term}`;
+
+    try {
+      const res = await this.openai.chat.completions.create({
+        model: 'gpt-4o', // Or your preferred OpenAI model
+        temperature: 0.2, // Adjust as needed
+        max_tokens: 2048, // CCI responses with breakdown can be larger
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: userPrompt },
+        ],
+        response_format: { type: "json_object" }, // Use JSON mode for reliable JSON output
+      });
+
+      const content = res.choices[0].message?.content;
+      
+      // With JSON mode, the content should be a valid JSON string.
+      // The .replace for ```json might not be needed but is harmless.
+      const cleanContent = content?.trim().replace(/^```json|```$/g, '').trim();
+
+      if (!cleanContent) {
+        console.log('OpenAI CCI lookup returned empty content.');
+        return { codes: [], status: 'not_found' };
+      }
+      
+      return JSON.parse(cleanContent) as CCIResponse;
+    } catch (err) {
+      console.log('OpenAI CCI lookup failed:', err);
+      return { codes: [], status: 'not_found' };
+    }
+  }
+
 }
