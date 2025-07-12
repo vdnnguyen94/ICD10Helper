@@ -1,32 +1,48 @@
 // src/cci/cci-enhanced.service.ts
 
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import { Collection, MongoClient } from 'mongodb';
 import { OpenAIService } from '../openai.service';
 import {
   CciEnhancedCatalogItem,
-  QualifierDto,
   AttributeDto,
 } from './cci-enhanced-catalog-item.dto';
 import { CciEnhancedResponseDto } from './cci-enhanced-response.dto';
 
 @Injectable()
-export class CciEnhancedService {
+export class CciEnhancedService implements OnModuleInit {
   private readonly logger = new Logger(CciEnhancedService.name);
   private readonly dbName = 'SchoolSystem';
   private readonly catalogColl = 'cci_catalog';
-  // Add the name of your Atlas Vector Search index
-  private readonly vectorIndexName = 'cci_search'; // <-- IMPORTANT: Change this to your actual index name
+  private readonly attributesColl = 'attributes'; 
+  private readonly vectorIndexName = 'cci_search';
+
+  private attributeDefs: Record<string, any> = {};
 
   constructor(
     private readonly mongo: MongoClient,
     private readonly openaiService: OpenAIService,
   ) {}
 
-  /**
-   * Main search function called by the resolver.
-   * It orchestrates the vector search and any subsequent processing.
-   */
+  async onModuleInit() {
+    this.logger.log('Initializing service and caching attribute definitions...');
+    try {
+      const db = this.mongo.db(this.dbName);
+      const collection = db.collection(this.attributesColl);
+      const attributeDoc = await collection.findOne({});
+
+      if (attributeDoc) {
+        // delete attributeDoc._id;
+        this.attributeDefs = attributeDoc;
+        this.logger.log('Successfully cached attribute definitions.');
+      } else {
+        this.logger.warn('Could not find the attribute definitions document in the database.');
+      }
+    } catch (error) {
+      this.logger.error('Failed to load attribute definitions from the database.', error);
+    }
+  }
+
   async search(term: string): Promise<CciEnhancedResponseDto> {
     const start = Date.now();
     if (!term || term.trim() === '') {
@@ -37,10 +53,7 @@ export class CciEnhancedService {
       const db = this.mongo.db(this.dbName);
       const coll = db.collection<any>(this.catalogColl);
 
-      // Step 1: Generate an embedding for the user's search term.
       const queryVector = await this.openaiService.createEmbedding(term);
-
-      // Step 2: Build and execute the vector search aggregation pipeline.
       const pipeline = this.buildVectorSearchPipeline(queryVector);
       const items = await coll.aggregate<CciEnhancedCatalogItem>(pipeline).toArray();
 
@@ -49,57 +62,48 @@ export class CciEnhancedService {
       if (items.length === 0) {
         return { items: [], status: 'not_found', searchTimeMs };
       }
-      
-      // Step 3 (Optional but recommended): Further refine results if needed.
-      // For example, you could iterate through the top results and use another
-      // AI call to pick the most relevant qualifiers, as your original code suggested.
-      // For now, we return the direct vector search results.
+
+      // --- FIX: Call the assembly function and use its result ---
+      const enrichedItems = await this.assembleRubricsWithAttributes(items);
 
       return {
-        items,
-        status: items.length > 0 ? 'matched' : 'not_found',
+        items: enrichedItems, // Return the enriched items, not the raw items
+        status: enrichedItems.length > 0 ? 'matched' : 'not_found',
         searchTimeMs,
       };
+      // --- END FIX ---
+
     } catch (error) {
       this.logger.error('Error during CCI enhanced search:', error);
       throw new Error('Failed to perform the search.');
     }
   }
 
-  /**
-   * Constructs the MongoDB Aggregation Pipeline for vector search.
-   * @param queryVector The vector representation of the search term.
-   * @returns The MongoDB aggregation pipeline array.
-   */
   private buildVectorSearchPipeline(queryVector: number[]): any[] {
     return [
       {
         $vectorSearch: {
           index: this.vectorIndexName,
-          path: 'embedding', // The field in your documents that contains the vectors.
+          path: 'embedding',
           queryVector: queryVector,
-          numCandidates: 200, // Number of candidates to consider. Should be > limit.
-          limit: 50, // Return the top 50 results as requested.
+          numCandidates: 200,
+          limit: 50,
         },
       },
       {
         $project: {
-          _id: 0, // Exclude the default _id field.
+          _id: 0,
           code: 1,
           description: 1,
           note: 1,
           includes: 1,
           excludes: 1,
           codeAlso: '$code_also',
-          // The vector search returns the full document, so qualifiers are included.
-          // We can rename it to match the DTO.
           otherQualifiers: '$qualifiers',
-          // The DTO fields appliedQualifiers, allAttributes, and appliedAttributes
-          // would be populated by subsequent logic if needed. For now, they will be empty.
+          attributes: { $ifNull: [ "$attributes", {} ] },
           appliedQualifiers: [],
-          allAttributes: [],
+          allAttributes: [], // This will be populated by the assembly function
           appliedAttributes: [],
-          // Include the similarity score in the results.
           similarityScore: {
             $meta: 'vectorSearchScore',
           },
@@ -107,4 +111,58 @@ export class CciEnhancedService {
       },
     ];
   }
+
+    async assembleRubricsWithAttributes(rubrics: CciEnhancedCatalogItem[]): Promise<CciEnhancedCatalogItem[]> {
+    // Helper function to map domain letter to attribute array name
+    function getDomainName(domain: string): 'status' | 'location' | 'extent' {
+        if (domain === 'S') return 'status';
+        if (domain === 'L') return 'location';
+        if (domain === 'E') return 'extent';
+        throw new Error(`Unknown domain: ${domain}`);
+    }
+
+    return rubrics.map((rubric: any) => {
+        const assembledAttributes: AttributeDto[] = [];
+
+        if (rubric.attributes) {
+        for (const [domain, attr] of Object.entries(rubric.attributes)) {
+            const attribute = attr as { type: string; codes: string[] };
+
+            let defs: { code: string; desc: string }[] = [];
+            try {
+            defs = this.attributeDefs[getDomainName(domain)] || [];
+            } catch {
+            // fallback for unknown domains, skip them
+            continue;
+            }
+
+            if (attribute.type === 'N/A' || !attribute.codes || attribute.codes.length === 0) {
+            assembledAttributes.push({
+                name: domain,
+                code: '/',
+                description: 'N/A',
+                type: attribute.type // <-- include the type
+            });
+            } else {
+            attribute.codes.forEach((code: string) => {
+                const def = defs.find((d) => d.code === code);
+                assembledAttributes.push({
+                name: domain,
+                code: code,
+                description: def ? def.desc : `Definition for ${code} not found`,
+                type: attribute.type // <-- include the type
+                });
+            });
+            }
+        }
+        }
+
+        return {
+        ...rubric,
+        allAttributes: assembledAttributes,
+        };
+    });
+    }
+
+
 }

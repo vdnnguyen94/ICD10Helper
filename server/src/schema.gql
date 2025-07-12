@@ -119,6 +119,7 @@ type AttributeDto {
   name: String!
   code: String!
   description: String!
+  type: String!
 }
 
 """Response wrapper for enhanced CCI vector search"""

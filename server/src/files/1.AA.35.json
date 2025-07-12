@@ -1,0 +1,118 @@
+{
+  "_id": {
+    "$oid": "68633c147a71c91f60eb94f4"
+  },
+  "code": "1.AA.35",
+  "description": "Pharmacotherapy (local), meninges and dura mater of brain",
+  "note": [],
+  "code_also": [],
+  "includes": [
+    "Injection of pharmaceutical agent(s), meninges of brain",
+    "Instillation, pharmaceutical agent(s), meninges of brain"
+  ],
+  "excludes": [
+    "Systemic pharmacotherapy (see 1.ZZ.35.^^)",
+    "that for control of bleeding (see 1.AA.13.^^)"
+  ],
+  "omit_code": [],
+  "attributes": {
+    "S": {
+      "type": "N/A",
+      "codes": []
+    },
+    "L": {
+      "type": "N/A",
+      "codes": []
+    },
+    "E": {
+      "type": "N/A",
+      "codes": []
+    }
+  },
+  "qualifiers": [
+    {
+      "code": "1.AA.35.HA-C1",
+      "approach": "percutaneous [needle] approach",
+      "description": "using antithrombotic agent using percutaneous [needle] approach",
+      "includes": [
+        "Includes:",
+        "warfarin, heparin, enoxaparin,",
+        "dipyridamole"
+      ]
+    },
+    {
+      "code": "1.AA.35.HH-C1",
+      "approach": "percutaneous transcatheter\napproach",
+      "description": "using antithrombotic agent using percutaneous transcatheter\napproach",
+      "includes": [
+        "Includes:",
+        "warfarin, heparin, enoxaparin,",
+        "dipyridamole"
+      ]
+    },
+    {
+      "code": "1.AA.35.HA-1C",
+      "approach": "percutaneous [needle] approach",
+      "description": "using thrombolytic agent using percutaneous [needle] approach",
+      "includes": [
+        "Includes:",
+        "anistreplase, alteplase,",
+        "retaplase, streptokinase,",
+        "tenecteplase, TNKase (TNK),",
+        "tissue plasminogen activator",
+        "(tPA), urokinase"
+      ]
+    },
+    {
+      "code": "1.AA.35.HH-1C",
+      "approach": "percutaneous transcatheter\napproach",
+      "description": "using thrombolytic agent using percutaneous transcatheter\napproach",
+      "includes": [
+        "Includes:",
+        "anistreplase, alteplase,",
+        "retaplase, streptokinase,",
+        "tenecteplase, TNKase (TNK),",
+        "tissue plasminogen activator",
+        "(tPA), urokinase"
+      ]
+    },
+    {
+      "code": "1.AA.35.HA-K0",
+      "approach": "percutaneous [needle] approach",
+      "description": "using antiinfective agent NEC using percutaneous [needle] approach",
+      "includes": []
+    },
+    {
+      "code": "1.AA.35.HH-K0",
+      "approach": "percutaneous transcatheter\napproach",
+      "description": "using antiinfective agent NEC using percutaneous transcatheter\napproach",
+      "includes": []
+    },
+    {
+      "code": "1.AA.35.HA-M0",
+      "approach": "percutaneous [needle] approach",
+      "description": "using antineoplastic agent NEC using percutaneous [needle] approach",
+      "includes": []
+    },
+    {
+      "code": "1.AA.35.HH-M0",
+      "approach": "percutaneous transcatheter\napproach",
+      "description": "using antineoplastic agent NEC using percutaneous transcatheter\napproach",
+      "includes": []
+    },
+    {
+      "code": "1.AA.35.HA-T9",
+      "approach": "percutaneous [needle] approach",
+      "description": "using other pharmacological agent NEC using percutaneous [needle] approach",
+      "includes": []
+    },
+    {
+      "code": "1.AA.35.HH-T9",
+      "approach": "percutaneous transcatheter\napproach",
+      "description": "using other pharmacological agent NEC using percutaneous transcatheter\napproach",
+      "includes": []
+    }
+  ],
+  "embedding": [
+  ]
+}

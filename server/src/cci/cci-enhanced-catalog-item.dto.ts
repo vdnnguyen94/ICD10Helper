@@ -52,6 +52,7 @@ export class AttributeDto {
   @Field() name: string;
   @Field() code: string;
   @Field() description: string;
+  @Field() type: string;
 }
 
 
