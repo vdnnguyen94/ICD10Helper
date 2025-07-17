@@ -134,12 +134,60 @@ type CciEnhancedResponseDto {
   searchTimeMs: Float
 }
 
+"""A single attribute chosen by the AI, with its category"""
+type CciAiChosenAttribute {
+  """
+  Attribute category, e.g. "S", "L", or "E"
+  """
+  type: String!
+
+  """
+  Attribute code, e.g. "A", "-", or "/"
+  """
+  code: String!
+}
+
+"""An AI-enhanced CCI search result, with selection metadata"""
+type CciAiEnhancedResult {
+  """
+  Full rubric definition (code, description, includes, excludes, codeAlso)
+  """
+  rubric: CciEnhancedCatalogItem!
+
+  """Similarity score from the original vector search"""
+  score: Float!
+
+  """True if the AI selected this rubric"""
+  isChosen: Boolean!
+
+  """
+  The qualifier the AI selected, e.g. "SE-GX"
+  """
+  chosenQualifier: String!
+
+  """The AI’s chosen attributes, typed by category"""
+  chosenAttributes: [CciAiChosenAttribute!]!
+
+  """Why the AI picked this rubric, qualifier, and attributes"""
+  rationale: String!
+}
+
+"""Wrapper for AI-enhanced CCI search results"""
+type CciAiEnhancedResponse {
+  """All candidate rubrics, flagged by AI choice"""
+  results: [CciAiEnhancedResult!]!
+
+  """Overall status: matched, partial, or not_found"""
+  status: String!
+}
+
 type Query {
   hello: String!
   checkEnv: String!
   lookupICD10(term: String!): ICD10CodeResponse!
   lookupCount: Float!
   cciEnhancedSearch(term: String!): CciEnhancedResponseDto!
+  cciAiEnhancedSearch(term: String!): CciAiEnhancedResponse!
 }
 
 type Mutation {

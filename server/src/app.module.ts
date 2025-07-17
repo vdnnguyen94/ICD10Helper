@@ -17,7 +17,7 @@ import { Counter, CounterSchema } from './counter/counter.schema';
 
 import { CciEnhancedService } from './cci/cci-enhanced.service';
 import { CciEnhancedResolver } from './cci/cci-enhanced.resolver';
-
+import { CciAiEnhancedResolver } from './cci/cci-ai-enhanced.resolver';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
@@ -50,6 +50,7 @@ dotenv.config();
     CounterResolver,
     CciEnhancedService,
     CciEnhancedResolver,
+    CciAiEnhancedResolver,
   ],
 })
 export class AppModule {}

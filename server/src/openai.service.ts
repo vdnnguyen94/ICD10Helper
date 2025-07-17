@@ -175,4 +175,13 @@ Example of a "breakdown" sub-object for a code like "1.AN.09.JA.DV" (assuming ti
 If multiple distinct interventions are described or if multiple CCI codes could apply according to CIHI rules (e.g., combination codes, or equally valid alternatives), include each as a separate object within the "codes" array. Prioritize accuracy and adherence to CIHI CCI coding standards. Do not invent codes or descriptions.
 The user will provide the intervention term or scenario.`;
   }
+
+  async chatCompletion(
+    messages: { role: 'system' | 'user'; content: string }[]
+  ) {
+    return this.client.chat.completions.create({
+      model: this.chatModel,
+      messages,
+    });
+  }
 }

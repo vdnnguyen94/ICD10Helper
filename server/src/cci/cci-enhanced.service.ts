@@ -9,6 +9,14 @@ import {
 } from './cci-enhanced-catalog-item.dto';
 import { CciEnhancedResponseDto } from './cci-enhanced-response.dto';
 
+// ← Declare AiSelection here, before the class
+interface AiSelection {
+  code: string;
+  chosenQualifier: string;
+  chosenAttributes: { type: string; code: string }[];
+  rationale: string;
+} 
+
 @Injectable()
 export class CciEnhancedService implements OnModuleInit {
   private readonly logger = new Logger(CciEnhancedService.name);
@@ -78,6 +86,7 @@ export class CciEnhancedService implements OnModuleInit {
       throw new Error('Failed to perform the search.');
     }
   }
+
 
   private buildVectorSearchPipeline(queryVector: number[]): any[] {
     return [
@@ -164,5 +173,103 @@ export class CciEnhancedService implements OnModuleInit {
     });
     }
 
+async fetchTop50Rubrics(term: string): Promise<CciEnhancedCatalogItem[]> {
+  const resp = await this.search(term);
+  return resp.items;
+}
+
+async selectWithOpenAI(
+  term: string,
+  candidates: CciEnhancedCatalogItem[],
+): Promise<AiSelection[]> {
+  const prompt = this.buildMetaAIPrompt(term, candidates);
+  const aiRaw = await this.openaiService.chatCompletion([
+    { role: 'user', content: prompt },
+  ]);
+  // Get the model’s text (possibly with ```json …``` fences)
+  const content = aiRaw.choices[0].message?.content ?? '';
+  
+  // Strip triple-backticks and optional "```json" label
+  const withoutFences = content.replace(/```(?:json)?\s*([\s\S]*?)```/g, '$1').trim();
+
+  try {
+    return JSON.parse(withoutFences) as AiSelection[];
+  } catch (err) {
+    this.logger.error('Failed to parse AI response. Cleaned content:', withoutFences, err);
+    throw new Error(`Failed to parse AI response: ${err}`);
+  }
+}
+
+/**
+ * PRIVATE: Build the Meta-AI prompt by embedding the full candidate objects
+ * so the model has access to every field from the raw CciEnhancedCatalogItem.
+ */
+private buildMetaAIPrompt(
+  term: string,
+  candidates: CciEnhancedCatalogItem[],
+): string {
+  const lines: string[] = [];
+
+  // 1) Role & instructions
+  lines.push(
+    `You are a certified CCI coder following CIHI coding best practices. A clinician describes:`,
+    `"${term}"`,
+    ``,
+    `Below are ${candidates.length} candidate CCI rubric objects in full JSON.`,
+    `Each object contains every field we returned from the vector search,`,
+    `including code, description, includes, excludes, codeAlso,`,
+    `otherQualifiers, allAttributes, similarityScore, etc.`,
+    ``,
+    `Coding Rules:`,
+    ` 1. If a rubric bundles both diagnostic and therapeutic work,`,
+    `    code ONLY the therapeutic half.`,
+    ` 2. ALWAYS pick exactly one qualifier (from the rubric's otherQualifiers list).`,
+    `    Combined Diagnostic + Therapeutic in ONE rubric:`,
+    `   • If a single rubric bundles both diagnostic & therapeutic work code ONLY the THERAPEUTIC part.`,
+    ` 2B. Supplemental references:`,
+    ` • If a rubric’s includes or codeAlso text literally names another code`,
+    `  (e.g. “see 3.IP.30.^^”), and that code’s description or includes`,
+    ` fits the user’s scenario, you MUST include that code as a separate entry in your JSON output.`,
+    ` 3. For each attribute domain S, L, E:`,
+    `    – If Mandatory, pick the best match whose description appears in the term;`,
+    `    – If Optional, pick the option whose description appears in the term;`,
+    `      if none apply, return "-";`,
+    `    – If N/A, return "/".`,
+    `    – Do not select more than one code per domain.`,
+    ``,
+    `Output Format:`,
+    `Return ONLY valid JSON, an array of objects like:`,
+    ` [`,
+    `   {`,
+    `     "code": "1.ZZ.35",`,
+    `     "chosenQualifier": "HA-M2",`,
+    `     "chosenAttributes": [`,
+    `       { "type":"S", "code":"IN" },`,
+    `       { "type":"L", "code":"/" },`,
+    `       { "type":"E", "code":"/" }`,
+    `     ],`,
+    `     "rationale": "…single-sentence explanation…"` ,
+    `   },`,
+    `   …`,
+    ` ]`,
+    ``,
+    `Do not wrap in markdown or add any extra text.`,
+    ``,
+    `Here are the full candidate objects:`
+  );
+
+  // 2) Serialize each candidate in full
+  candidates.forEach((c, i) => {
+    // Pretty-print JSON and strip backticks if present
+    const json = JSON.stringify(c, null, 2).replace(/`/g, '');
+    lines.push(
+      ``,
+      `--- Candidate ${i + 1} ---`,
+      json
+    );
+  });
+
+  return lines.join('\n');
+}
 
 }
