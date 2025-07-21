@@ -1,0 +1,964 @@
+{
+  "data": {
+    "cciAiEnhancedSearch": {
+      "status": "matched",
+      "results": [
+        {
+          "rubric": {
+            "code": "1.JE.50",
+            "description": "Dilation, carotid artery S 5 L 2",
+            "includes": [
+              "Angioplasty, carotid artery"
+            ],
+            "excludes": [],
+            "codeAlso": [
+              "Any endarterectomy, carotid artery (see 1.JE.57.^^)",
+              "Any infusion of thrombolytic agent (see 1.KV.35.^^)",
+              "Pharmacotherapy delivered via drug eluting stent (see 1.KV.35.^^)"
+            ]
+          },
+          "score": 0.9324701428413391,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.IJ.50",
+            "description": "Dilation, coronary arteries S 62 E 67",
+            "includes": [
+              "Angioplasty, coronary artery [PTCA]",
+              "Angioplasty, cutting balloon",
+              "Angioplasty, laser balloon",
+              "Dilation, previously placed coronary artery bypass graft",
+              "Intracoronary sonotherapy",
+              "Intravascular sonotherapy",
+              "that using embolic protection device/filter wire (to capture dislodged plaque)",
+              "that with atherectomy",
+              "that with thrombectomy",
+              "Ultrasonic angioplasty"
+            ],
+            "excludes": [
+              "Coronary artery atherectomy alone (see 1.IJ.57.^^)",
+              "Coronary artery endarterectomy alone (see 1.IJ.57.^^)",
+              "Diagnostic intravascular ultrasound [IVUS] (see 3.IJ.30.^^)",
+              "Mechanical thrombectomy of coronary artery alone (see 1.IJ.57.^^)"
+            ],
+            "codeAlso": [
+              "Any coronary angiography (see 3.IP.10.^^)",
+              "Any infusion or injection of thrombolytic agent directly into coronary artery (see 1.IL.35.^^)",
+              "Any intravenous infusion of thrombolytic agent (see 1.ZZ.35.^^)",
+              "Pharmacotherapy delivered via drug eluting stent or balloon (see 1.IL.35.^^)"
+            ]
+          },
+          "score": 0.9308995008468628,
+          "isChosen": true,
+          "chosenQualifier": "1.IJ.50.GQ-OA",
+          "chosenAttributes": [
+            {
+              "type": "S",
+              "code": "D1"
+            },
+            {
+              "type": "L",
+              "code": "/"
+            },
+            {
+              "type": "E",
+              "code": "DF"
+            }
+          ],
+          "rationale": "Code for balloon dilation and stent insertion in coronary arteries, with attributes chosen for STEMI and two-vessel involvement."
+        },
+        {
+          "rubric": {
+            "code": "1.JT.50",
+            "description": "Dilation, subclavian vein S 5 L 2",
+            "includes": [],
+            "excludes": [],
+            "codeAlso": [
+              "Any infusion of thrombolytic agent (see 1.KX.35.^^)",
+              "Any thrombectomy, subclavian vein (see 1.JT.57.^^)"
+            ]
+          },
+          "score": 0.9294472336769104,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.JY.50",
+            "description": "Dilation, thoracic vessels NEC S 5",
+            "includes": [
+              "Angioplasty, thoracic vessels NEC"
+            ],
+            "excludes": [],
+            "codeAlso": [
+              "Any endarterectomy, thoracic vessels NEC (see 1.JY.57.^^)",
+              "Any infusion of thrombolytic agent (see 1.KV.35.^^or 1.KX.35.^^)",
+              "Pharmacotherapy delivered via drug eluting stent (see 1.KV.35.^^)"
+            ]
+          },
+          "score": 0.9290478229522705,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.KY.50",
+            "description": "Dilation, artery with vein L 70",
+            "includes": [
+              "Angioplasty, arteriovenous fistula"
+            ],
+            "excludes": [],
+            "codeAlso": [
+              "Any drug elution from balloon (following dilation of stenosis) (see 1.KV.35.^^)",
+              "Any endarterectomy, artery with vein (see 1.KY.57.^^)"
+            ]
+          },
+          "score": 0.9277242422103882,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "3.IJ.30",
+            "description": "Ultrasound, coronary arteries S 1",
+            "includes": [
+              "Ultrasound guidance, coronary arteries (interventions)"
+            ],
+            "excludes": [
+              "Ultrasound, heart with coronary arteries (see 3.IP.30.^^)"
+            ],
+            "codeAlso": []
+          },
+          "score": 0.9274516105651855,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.IL.35",
+            "description": "Pharmacotherapy (local), vessels of heart",
+            "includes": [
+              "Injection (of agent), intracoronary artery",
+              "Instillation, coronary vessels",
+              "Perfusion, vessels of the heart",
+              "Pharmacotherapy delivered via drug eluting balloon",
+              "Pharmacotherapy delivered via drug eluting stent",
+              "that for thrombolytic treatment and other local effect",
+              "Thrombolytic therapy, (intra) coronary artery"
+            ],
+            "excludes": [
+              "Systemic pharmacotherapy (see 1.ZZ.35.^^)"
+            ],
+            "codeAlso": []
+          },
+          "score": 0.927322268486023,
+          "isChosen": true,
+          "chosenQualifier": "1.IL.35.HH-1C",
+          "chosenAttributes": [
+            {
+              "type": "S",
+              "code": "/"
+            },
+            {
+              "type": "L",
+              "code": "/"
+            },
+            {
+              "type": "E",
+              "code": "/"
+            }
+          ],
+          "rationale": "Code for intracoronary catheter-directed infusion of streptokinase, aligning with the local pharmacotherapy for vessels of heart."
+        },
+        {
+          "rubric": {
+            "code": "1.IJ.55",
+            "description": "Removal of device, coronary arteries S 4 E 4",
+            "includes": [],
+            "excludes": [
+              "that for replacement of stent (see specific intervention)"
+            ],
+            "codeAlso": []
+          },
+          "score": 0.927093505859375,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.JW.50",
+            "description": "Dilation, intracranial vessels S 5",
+            "includes": [
+              "Angioplasty, intracranial"
+            ],
+            "excludes": [],
+            "codeAlso": [
+              "Any endarterectomy, intracranial vessels (see 1.JW.57.^^)",
+              "Any infusion of thrombolytic agent (see 1.JW.35.^^)",
+              "Pharmacotherapy delivered via drug eluting stent (see 1.JW.35.^^)"
+            ]
+          },
+          "score": 0.926238477230072,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "2.IL.70",
+            "description": "Inspection, vessels of heart",
+            "includes": [
+              "Inspection of coronary arteries and/or veins"
+            ],
+            "excludes": [],
+            "codeAlso": []
+          },
+          "score": 0.9253634214401245,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.JM.50",
+            "description": "Dilation, arteries of arm NEC S 5 L 2",
+            "includes": [
+              "Angioplasty, axillary artery",
+              "Angioplasty, brachial artery"
+            ],
+            "excludes": [],
+            "codeAlso": [
+              "Any endarterectomy, arteries of arm NEC (see 1.JM.57.^^)",
+              "Pharmacotherapy delivered via drug eluting stent (see 1.KV.35.^^)"
+            ]
+          },
+          "score": 0.9247438907623291,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.IK.50",
+            "description": "Dilation, coronary veins S 5",
+            "includes": [
+              "Dilation, coronary sinus"
+            ],
+            "excludes": [],
+            "codeAlso": []
+          },
+          "score": 0.9247022271156311,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.JQ.50",
+            "description": "Dilation, jugular veins S 5 L 2",
+            "includes": [],
+            "excludes": [],
+            "codeAlso": [
+              "Any infusion of thrombolytic agent (see 1.KX.35.^^)",
+              "Any thrombectomy, jugular veins (see 1.JQ.57.^^)"
+            ]
+          },
+          "score": 0.9245761632919312,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.IM.50",
+            "description": "Dilation, pulmonary artery S 5 L 92",
+            "includes": [],
+            "excludes": [],
+            "codeAlso": [
+              "Any endarterectomy or thrombectomy, pulmonary artery (see 1.IM.57.^^)",
+              "Any infusion of thrombolytic agent (see 1.KV.35.^^)",
+              "Pharmacotherapy delivered via drug eluting stent (see 1.KV.35.^^)",
+              "Removal of pulmonary artery band (see 1.IM.55.^^)"
+            ]
+          },
+          "score": 0.9245287179946899,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.JE.55",
+            "description": "Removal of device, carotid artery S 4 L 2",
+            "includes": [],
+            "excludes": [],
+            "codeAlso": []
+          },
+          "score": 0.9237610101699829,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.KG.50",
+            "description": "Dilation, arteries of leg NEC S 5 L 2",
+            "includes": [
+              "Angioplasty, lower limb arteries"
+            ],
+            "excludes": [
+              "that with partial excision of artery (see 1.KG.87.^^)"
+            ],
+            "codeAlso": [
+              "Any endarterectomy, femoral, tibial and popliteal arteries (see 1.KG.57.^^)",
+              "Any infusion of thrombolytic agent (see 1.KG.35.^^)",
+              "Pharmacotherapy delivered via drug eluting stent (see 1.KG.35.^^)"
+            ]
+          },
+          "score": 0.9234906435012817,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.IN.50",
+            "description": "Dilation, pulmonary vein S 5 L 92",
+            "includes": [],
+            "excludes": [],
+            "codeAlso": []
+          },
+          "score": 0.9231338500976562,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.IJ.26",
+            "description": "Brachytherapy, coronary arteries S 35",
+            "includes": [
+              "Endocurietherapy, coronary arteries",
+              "Implantation of radioactive material, coronary arteries",
+              "Intravascular brachytherapy, coronary artery"
+            ],
+            "excludes": [],
+            "codeAlso": [
+              "any associated angioplasty, coronary arteries (see 1.IJ.50.^^)"
+            ]
+          },
+          "score": 0.9229817390441895,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.IS.50",
+            "description": "Dilation, vena cava (superior and inferior) S 5 L 9",
+            "includes": [],
+            "excludes": [
+              "that with extraction (see 1.IS.57.^^)"
+            ],
+            "codeAlso": [
+              "Any infusion of thrombolytic agent (see 1.KX.35.^^)"
+            ]
+          },
+          "score": 0.9228338003158569,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "2.IL.71",
+            "description": "Biopsy, vessels of heart",
+            "includes": [
+              "Biopsy of coronary arteries and/or veins"
+            ],
+            "excludes": [],
+            "codeAlso": []
+          },
+          "score": 0.9226780533790588,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.JK.55",
+            "description": "Removal of device, subclavian artery S 4 L 2",
+            "includes": [],
+            "excludes": [],
+            "codeAlso": []
+          },
+          "score": 0.9226428270339966,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.KE.50",
+            "description": "Dilation, abdominal arteries NEC S 5 L 2",
+            "includes": [
+              "Angioplasty, abdominal arteries (e.g. splenic, renal)",
+              "Angioplasty, common iliac artery"
+            ],
+            "excludes": [
+              "that with partial excision of artery (see 1.KE.87.^^)"
+            ],
+            "codeAlso": [
+              "Any endarterectomy, celiac, common iliac, mesenteric and renal arteries (see 1.KE.57.^^)",
+              "Any infusion of thrombolytic agent (see 1.KE.35.^^)",
+              "Pharmacotherapy delivered via drug eluting stent (see 1.KE.35.^^)"
+            ]
+          },
+          "score": 0.9223437309265137,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.JX.50",
+            "description": "Dilation, other vessels of head, neck and spine NEC S 5",
+            "includes": [
+              "Angioplasty, extracranial"
+            ],
+            "excludes": [],
+            "codeAlso": [
+              "Any endarterectomy, other vessels of head, neck and spine NEC (see 1.JX.57.^^)",
+              "Any infusion of thrombolytic agent (see 1.KV.35.^^or 1.KX.35.^^)",
+              "Pharmacotherapy delivered via drug eluting stent (see 1.KV.35.^^)"
+            ]
+          },
+          "score": 0.9220253229141235,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "3.IP.10",
+            "description": "Xray, heart with coronary arteries S 55 L 20",
+            "includes": [],
+            "excludes": [],
+            "codeAlso": []
+          },
+          "score": 0.9219919443130493,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.ID.55",
+            "description": "Removal of device, aorta NEC S 5 L 98",
+            "includes": [],
+            "excludes": [],
+            "codeAlso": []
+          },
+          "score": 0.9216932654380798,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.JL.55",
+            "description": "Removal of device, internal mammary artery S 4 L 2",
+            "includes": [],
+            "excludes": [],
+            "codeAlso": []
+          },
+          "score": 0.9216117858886719,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.ID.53",
+            "description": "Implantation of internal device, aorta NEC S 5 L 98",
+            "includes": [],
+            "excludes": [],
+            "codeAlso": []
+          },
+          "score": 0.9212260246276855,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.JE.35",
+            "description": "Pharmacotherapy (local), carotid artery",
+            "includes": [
+              "Injection (of agent), carotid artery",
+              "Instillation, carotid artery",
+              "Thrombolytic therapy, carotid artery"
+            ],
+            "excludes": [],
+            "codeAlso": []
+          },
+          "score": 0.9211519956588745,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.JJ.55",
+            "description": "Removal of device, brachiocephalic arteries S 4 L 2",
+            "includes": [],
+            "excludes": [],
+            "codeAlso": []
+          },
+          "score": 0.9210914373397827,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.KV.35",
+            "description": "Pharmacotherapy (local), artery NEC",
+            "includes": [
+              "Injection (of agent), artery NEC",
+              "Instillation, artery NEC",
+              "Pharmacotherapy delivered via drug-eluting stent, artery NEC",
+              "that for thrombolytic therapy",
+              "Thrombolysis"
+            ],
+            "excludes": [
+              "Antithrombotic irrigation of intraarterial device (see 1.KV.54.^^)",
+              "Control of bleeding, artery NEC (see 1.KV.13.^^)",
+              "Systemic pharmacotherapy (see 1.ZZ.35.^^)",
+              "Thrombolytic therapy, coronary artery (see 1.IL.35.^^)",
+              "Thrombolytic therapy, intracranial vessels (see 1.JW.35.^^)"
+            ],
+            "codeAlso": []
+          },
+          "score": 0.9207392930984497,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "2.IJ.57",
+            "description": "Flow study, coronary arteries",
+            "includes": [
+              "Measurement, coronary blood volume",
+              "Monitoring, coronary artery blood flow"
+            ],
+            "excludes": [
+              "that done using ultrasound with Doppler (see 3.IP.30.^^)",
+              "that with diagnostic nuclear imaging study (see 3.IP.70.^^)"
+            ],
+            "codeAlso": []
+          },
+          "score": 0.92071533203125,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.IJ.57",
+            "description": "Extraction, coronary arteries S 18 E 4",
+            "includes": [
+              "Atherectomy alone, coronary artery",
+              "Endarterectomy alone, coronary artery",
+              "Removal of atheromatous plaque, coronary artery",
+              "that with patch graft to widen vessel lumen following coronary endarterectomy",
+              "Thrombectomy alone, coronary artery"
+            ],
+            "excludes": [
+              "Atherectomy or thrombectomy performed as an adjunct to percutaneous transluminal coronary angioplasty (see 1.IJ.50.^^)",
+              "Balloon dilation of coronary artery with atheroma or thrombus removal (see 1.IJ.50.^^)"
+            ],
+            "codeAlso": [
+              "Any coronary angiography (see 3.IP.10.^^)",
+              "Any infusion or injection of thrombolytic agent directly into coronary artery (see 1.IL.35.^^)",
+              "Any intravenous infusion of thrombolytic agent (see 1.ZZ.35.^^)"
+            ]
+          },
+          "score": 0.9202484488487244,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.KV.53",
+            "description": "Implantation of internal device, artery NEC S 4",
+            "includes": [
+              "Arterial cutdown",
+              "Intra arterial catheterization",
+              "that for establishing an intraarterial line for infusion, etc."
+            ],
+            "excludes": [
+              "Arterial puncture or catheterization for collection of specimen (see 2.ZZ.13.^^)",
+              "Placement of arteriovenous catheter or cannula (see 1.KG.76.^^or 1.JM.76.^^)"
+            ],
+            "codeAlso": []
+          },
+          "score": 0.9202146530151367,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.IK.57",
+            "description": "Extraction, coronary veins S 5",
+            "includes": [
+              "Thrombectomy, coronary veins"
+            ],
+            "excludes": [],
+            "codeAlso": [
+              "Any intravenous infusion of thrombolytic agent (see 1.ZZ.35.^^)"
+            ]
+          },
+          "score": 0.9198734760284424,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.KA.55",
+            "description": "Removal of device, abdominal aorta S 4",
+            "includes": [],
+            "excludes": [],
+            "codeAlso": []
+          },
+          "score": 0.9197063446044922,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "3.IK.10",
+            "description": "Xray, coronary veins S 1",
+            "includes": [
+              "Coronary sinus venogram"
+            ],
+            "excludes": [],
+            "codeAlso": [
+              "Any concomitant coronary arteriography (see 3.IP.10.^^)"
+            ]
+          },
+          "score": 0.9195330739021301,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.ID.50",
+            "description": "Dilation, aorta NEC S 5 L 98",
+            "includes": [
+              "Angioplasty, thoracic (thoracoabdominal) aorta",
+              "Dilation, coarctation of thoracic (descending) aorta"
+            ],
+            "excludes": [
+              "Angioplasty, abdominal aorta (see 1.KA.50.^^)"
+            ],
+            "codeAlso": [
+              "Any endarterectomy, aorta NEC (see 1.ID.57.^^)",
+              "Any infusion of thrombolytic agent (see 1.KV.35.^^)",
+              "Pharmacotherapy delivered via drug eluting stent (see 1.KV.35.^^)"
+            ]
+          },
+          "score": 0.9194378852844238,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.KA.50",
+            "description": "Dilation, abdominal aorta S 5",
+            "includes": [
+              "Angioplasty, abdominal aorta",
+              "Angioplasty, aortoiliac",
+              "Dilation, aortic bifurcation",
+              "Fenestration (needle) (percutaneous), (infrarenal) aortic dissection flap for decompression of false lumen"
+            ],
+            "excludes": [
+              "Fenestration (open) by transection of (infrarenal) aorta with removal of intimal flap for decompression of false lumen (see 1.KA.87.^^)"
+            ],
+            "codeAlso": [
+              "Any endarterectomy, abdominal aorta (see 1.KA.57.^^)",
+              "Any infusion of thrombolytic agent (see 1.KV.35.^^)",
+              "Pharmacotherapy delivered via drug eluting stent (see 1.KV.35.^^)"
+            ]
+          },
+          "score": 0.9193769693374634,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.JT.55",
+            "description": "Removal of device, subclavian vein S 4 L 2",
+            "includes": [],
+            "excludes": [],
+            "codeAlso": []
+          },
+          "score": 0.9193624258041382,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.KE.35",
+            "description": "Pharmacotherapy (local), abdominal arteries NEC",
+            "includes": [
+              "Injection (of agent), abdominal artery",
+              "Instillation, abdominal artery",
+              "Pharmacotherapy delivered via drug eluting balloon",
+              "Pharmacotherapy delivered via drug eluting stent, abdominal arteries",
+              "that for thrombolytic therapy"
+            ],
+            "excludes": [
+              "Systemic pharmacotherapy (see 1.ZZ.35.^^)"
+            ],
+            "codeAlso": []
+          },
+          "score": 0.9192230701446533,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.KA.53",
+            "description": "Implantation of internal device, abdominal aorta S 5",
+            "includes": [],
+            "excludes": [],
+            "codeAlso": []
+          },
+          "score": 0.9185075759887695,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.HM.57",
+            "description": "Extraction, atrium S 5 L 2",
+            "includes": [
+              "Thrombectomy, atrium"
+            ],
+            "excludes": [],
+            "codeAlso": []
+          },
+          "score": 0.9181212186813354,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.JK.80",
+            "description": "Repair, subclavian artery S 5 L 2",
+            "includes": [
+              "Aneurysmorrhaphy"
+            ],
+            "excludes": [
+              "that with partial excision (see 1.JK.87.^^)"
+            ],
+            "codeAlso": []
+          },
+          "score": 0.9180397987365723,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.HZ.57",
+            "description": "Extraction, heart NEC S 5",
+            "includes": [
+              "that for removal of thrombus"
+            ],
+            "excludes": [],
+            "codeAlso": []
+          },
+          "score": 0.9178553819656372,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.KG.35",
+            "description": "Pharmacotherapy (local), arteries of leg NEC",
+            "includes": [
+              "Injection (of agent), lower limb arteries",
+              "Instillation, lower limb arteries",
+              "Pharmacotherapy delivered via drug eluting balloon",
+              "Pharmacotherapy delivered via drug eluting stent, artery of leg",
+              "that for thrombolytic therapy"
+            ],
+            "excludes": [
+              "Systemic pharmacotherapy (see 1.ZZ.35.^^)"
+            ],
+            "codeAlso": []
+          },
+          "score": 0.9175232648849487,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "3.JE.10",
+            "description": "Xray, carotid artery L 2",
+            "includes": [
+              "Angiography, carotid arteries",
+              "Arteriography, carotid",
+              "Xray with fluoroscopy, carotid artery"
+            ],
+            "excludes": [
+              "that with subclavian, vertebral and/or intracranial arteries (see 3.JX.10.^^)"
+            ],
+            "codeAlso": []
+          },
+          "score": 0.9174874424934387,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.JW.35",
+            "description": "Pharmacotherapy (local), intracranial vessels",
+            "includes": [
+              "Injection (of agent), intracranial vessels",
+              "Instillation, intracranial vessels",
+              "Pharmacotherapy delivered via drug eluting stent, intracranial vessels",
+              "Thrombolytic therapy, intracranial vessels"
+            ],
+            "excludes": [
+              "Systemic pharmacotherapy (see 1.ZZ.35.^^)"
+            ],
+            "codeAlso": []
+          },
+          "score": 0.9173768758773804,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.JY.55",
+            "description": "Removal of device, thoracic vessels NEC S 4",
+            "includes": [],
+            "excludes": [],
+            "codeAlso": []
+          },
+          "score": 0.917320966720581,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.IM.35",
+            "description": "Pharmacotherapy (local), pulmonary artery",
+            "includes": [
+              "Thrombolytic therapy [local] for treatment of pulmonary embolism"
+            ],
+            "excludes": [
+              "Thrombolytic therapy [systemic] (see 1.ZZ.35.^^)"
+            ],
+            "codeAlso": []
+          },
+          "score": 0.9172356724739075,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        },
+        {
+          "rubric": {
+            "code": "1.JL.51",
+            "description": "Occlusion, internal mammary artery S 5 L 2 E 53",
+            "includes": [
+              "Ligation, internal mammary artery (for aneurysm)"
+            ],
+            "excludes": [],
+            "codeAlso": []
+          },
+          "score": 0.9171720147132874,
+          "isChosen": false,
+          "chosenQualifier": "",
+          "chosenAttributes": [],
+          "rationale": ""
+        }
+      ]
+    }
+  }
+}

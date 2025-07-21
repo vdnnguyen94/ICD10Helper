@@ -11,4 +11,7 @@ export class CciAiEnhancedResponse {
 
   @Field(() => String, { description: 'Overall status: matched, partial, or not_found' })
   status: string;
+
+  @Field(() => Number, { description: 'Search time in milliseconds' }) 
+  searchTimeMs: number;
 }

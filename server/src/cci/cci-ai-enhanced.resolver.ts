@@ -14,6 +14,8 @@ export class CciAiEnhancedResolver {
   async cciAiEnhancedSearch(
     @Args('term') term: string
   ): Promise<CciAiEnhancedResponse> {
+
+    const start = Date.now(); 
     // 1. Fetch the top-50 rubrics
     const candidates: CciEnhancedCatalogItem[] =
       await this.service.fetchTop50Rubrics(term);
@@ -34,8 +36,22 @@ export class CciAiEnhancedResolver {
         };
     });
 
+    results.sort((a, b) => {
+      if (a.isChosen !== b.isChosen) return (b.isChosen ? 1 : 0) - (a.isChosen ? 1 : 0);
+      if (a.isChosen && b.isChosen) {
+        return a.rubric.code.localeCompare(b.rubric.code, undefined, { numeric: true });
+      }
+      return (b.score ?? 0) - (a.score ?? 0);
+    });
+    const trimmedResults = results.slice(0, 20);
+
+
     // 4. Compute overall status
     const status = results.some(r => r.isChosen) ? 'matched' : 'not_found';
-    return { results, status };
+
+    const searchTimeMs = Date.now() - start; // ✅ compute elapsed time
+
+  return { results: trimmedResults, status, searchTimeMs }; 
+
   }
 }

@@ -1,0 +1,1594 @@
+{
+  "data": {
+    "cciGeminiEnhancedSearch": {
+      "items": [
+        {
+          "code": "1.IJ.50",
+          "description": "Dilation, coronary arteries S 62 E 67",
+          "includes": [
+            "Angioplasty, coronary artery [PTCA]",
+            "Angioplasty, cutting balloon",
+            "Angioplasty, laser balloon",
+            "Dilation, previously placed coronary artery bypass graft",
+            "Intracoronary sonotherapy",
+            "Intravascular sonotherapy",
+            "that using embolic protection device/filter wire (to capture dislodged plaque)",
+            "that with atherectomy",
+            "that with thrombectomy",
+            "Ultrasonic angioplasty"
+          ],
+          "excludes": [
+            "Coronary artery atherectomy alone (see 1.IJ.57.^^)",
+            "Coronary artery endarterectomy alone (see 1.IJ.57.^^)",
+            "Diagnostic intravascular ultrasound [IVUS] (see 3.IJ.30.^^)",
+            "Mechanical thrombectomy of coronary artery alone (see 1.IJ.57.^^)"
+          ],
+          "code_also": [
+            "Any coronary angiography (see 3.IP.10.^^)",
+            "Any infusion or injection of thrombolytic agent directly into coronary artery (see 1.IL.35.^^)",
+            "Any intravenous infusion of thrombolytic agent (see 1.ZZ.35.^^)",
+            "Pharmacotherapy delivered via drug eluting stent or balloon (see 1.IL.35.^^)"
+          ],
+          "note": [],
+          "otherQualifiers": [
+            {
+              "code": "1.IJ.50.GQ-NR",
+              "description": "using (endovascular) stent only using percutaneous transluminal approach\n[e.g. with angioplasty alone]"
+            },
+            {
+              "code": "1.IJ.50.GQ-OA",
+              "description": "using balloon or cutting balloon dilator with (endovascular) stent using percutaneous transluminal approach\n[e.g. with angioplasty alone]"
+            },
+            {
+              "code": "1.IJ.50.GU-OA",
+              "description": "using balloon or cutting balloon dilator with (endovascular) stent using percutaneous transluminal approach\nwith thrombectomy"
+            },
+            {
+              "code": "1.IJ.50.GT-OA",
+              "description": "using balloon or cutting balloon dilator with (endovascular) stent using percutaneous transluminal approach\nwith atherectomy [e.g. rotational,\ndirectional, extraction catheter, laser]"
+            },
+            {
+              "code": "1.IJ.50.GQ-OB",
+              "description": "using laser (and balloon) dilator with (endovascular) stent using percutaneous transluminal approach\n[e.g. with angioplasty alone]"
+            },
+            {
+              "code": "1.IJ.50.GU-OB",
+              "description": "using laser (and balloon) dilator with (endovascular) stent using percutaneous transluminal approach\nwith thrombectomy"
+            },
+            {
+              "code": "1.IJ.50.GT-OB",
+              "description": "using laser (and balloon) dilator with (endovascular) stent using percutaneous transluminal approach\nwith atherectomy [e.g. rotational,\ndirectional, extraction catheter, laser]"
+            },
+            {
+              "code": "1.IJ.50.GQ-OE",
+              "description": "using ultrasound (and balloon) dilator with (endovascular) stent using percutaneous transluminal approach\n[e.g. with angioplasty alone]"
+            },
+            {
+              "code": "1.IJ.50.GU-OE",
+              "description": "using ultrasound (and balloon) dilator with (endovascular) stent using percutaneous transluminal approach\nwith thrombectomy"
+            },
+            {
+              "code": "1.IJ.50.GT-OE",
+              "description": "using ultrasound (and balloon) dilator with (endovascular) stent using percutaneous transluminal approach\nwith atherectomy [e.g. rotational,\ndirectional, extraction catheter, laser]"
+            },
+            {
+              "code": "1.IJ.50.GQ-BD",
+              "description": "using balloon or cutting balloon dilator using percutaneous transluminal approach\n[e.g. with angioplasty alone]"
+            },
+            {
+              "code": "1.IJ.50.GU-BD",
+              "description": "using balloon or cutting balloon dilator using percutaneous transluminal approach\nwith thrombectomy"
+            },
+            {
+              "code": "1.IJ.50.GT-BD",
+              "description": "using balloon or cutting balloon dilator using percutaneous transluminal approach\nwith atherectomy [e.g. rotational,\ndirectional, extraction catheter, laser]"
+            },
+            {
+              "code": "1.IJ.50.GQ-BF",
+              "description": "using laser (and balloon) dilator using percutaneous transluminal approach\n[e.g. with angioplasty alone]"
+            },
+            {
+              "code": "1.IJ.50.GU-BF",
+              "description": "using laser (and balloon) dilator using percutaneous transluminal approach\nwith thrombectomy"
+            },
+            {
+              "code": "1.IJ.50.GT-BF",
+              "description": "using laser (and balloon) dilator using percutaneous transluminal approach\nwith atherectomy [e.g. rotational,\ndirectional, extraction catheter, laser]"
+            },
+            {
+              "code": "1.IJ.50.GQ-OD",
+              "description": "using ultrasound (and balloon) dilator using percutaneous transluminal approach\n[e.g. with angioplasty alone]"
+            },
+            {
+              "code": "1.IJ.50.GU-OD",
+              "description": "using ultrasound (and balloon) dilator using percutaneous transluminal approach\nwith thrombectomy"
+            },
+            {
+              "code": "1.IJ.50.GT-OD",
+              "description": "using ultrasound (and balloon) dilator using percutaneous transluminal approach\nwith atherectomy [e.g. rotational,\ndirectional, extraction catheter, laser]"
+            }
+          ],
+          "allAttributes": [
+            {
+              "name": "S",
+              "code": "A",
+              "description": "Abandoned after onset",
+              "type": "Mandatory"
+            },
+            {
+              "name": "S",
+              "code": "D1",
+              "description": "Other PCI for STEMI",
+              "type": "Mandatory"
+            },
+            {
+              "name": "S",
+              "code": "N",
+              "description": "Initial",
+              "type": "Mandatory"
+            },
+            {
+              "name": "S",
+              "code": "OP",
+              "description": "Other PCI",
+              "type": "Mandatory"
+            },
+            {
+              "name": "S",
+              "code": "P",
+              "description": "Routine",
+              "type": "Mandatory"
+            },
+            {
+              "name": "S",
+              "code": "UN",
+              "description": "Unknown",
+              "type": "Mandatory"
+            },
+            {
+              "name": "S",
+              "code": "UR",
+              "description": "Urgent",
+              "type": "Mandatory"
+            },
+            {
+              "name": "L",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            },
+            {
+              "name": "E",
+              "code": "DA",
+              "description": "Bypass graft with any native artery vessel",
+              "type": "Mandatory"
+            },
+            {
+              "name": "E",
+              "code": "DB",
+              "description": "Bypass graft alone",
+              "type": "Mandatory"
+            },
+            {
+              "name": "E",
+              "code": "DC",
+              "description": "Left main artery with LAD and/or Cx and/or RCA",
+              "type": "Mandatory"
+            },
+            {
+              "name": "E",
+              "code": "DD",
+              "description": "Left main artery alone",
+              "type": "Mandatory"
+            },
+            {
+              "name": "E",
+              "code": "DE",
+              "description": "3 vessels",
+              "type": "Mandatory"
+            },
+            {
+              "name": "E",
+              "code": "DF",
+              "description": "2 vessels",
+              "type": "Mandatory"
+            },
+            {
+              "name": "E",
+              "code": "DG",
+              "description": "1 vessel",
+              "type": "Mandatory"
+            },
+            {
+              "name": "E",
+              "code": "UN",
+              "description": "Unknown",
+              "type": "Mandatory"
+            }
+          ],
+          "isChosen": true,
+          "appliedQualifier": {
+            "code": "1.IJ.50.GQ-OA",
+            "description": "using balloon or cutting balloon dilator with (endovascular) stent using percutaneous transluminal approach\n[e.g. with angioplasty alone]"
+          },
+          "appliedAttributes": {
+            "S": {
+              "code": "D1",
+              "description": "Other PCI for STEMI"
+            },
+            "L": {
+              "code": "/",
+              "description": "N/A"
+            },
+            "E": {
+              "code": "DF",
+              "description": "2 vessels"
+            }
+          },
+          "reasoning": "The primary therapeutic procedure is the balloon dilation with stent insertion in the coronary arteries for a STEMI. Code 1.IJ.50 is for 'Dilation, coronary arteries'. The qualifier 'GQ-OA' is selected for the use of a balloon dilator with an endovascular stent via a percutaneous approach. The mandatory attribute 'S' is 'D1' for 'Other PCI for STEMI'. The mandatory attribute 'E' is 'DF' for '2 vessels' (LAD and Cx).",
+          "similarityScore": 0.9301163554191589
+        },
+        {
+          "code": "1.IL.35",
+          "description": "Pharmacotherapy (local), vessels of heart",
+          "includes": [
+            "Injection (of agent), intracoronary artery",
+            "Instillation, coronary vessels",
+            "Perfusion, vessels of the heart",
+            "Pharmacotherapy delivered via drug eluting balloon",
+            "Pharmacotherapy delivered via drug eluting stent",
+            "that for thrombolytic treatment and other local effect",
+            "Thrombolytic therapy, (intra) coronary artery"
+          ],
+          "excludes": [
+            "Systemic pharmacotherapy (see 1.ZZ.35.^^)"
+          ],
+          "code_also": [],
+          "note": [],
+          "otherQualifiers": [
+            {
+              "code": "1.IL.35.HH-C1",
+              "description": "of antithrombotic agent using percutaneous transcatheter\napproach"
+            },
+            {
+              "code": "1.IL.35.HA-C1",
+              "description": "of antithrombotic agent using percutaneous [needle] approach"
+            },
+            {
+              "code": "1.IL.35.HZ-M8",
+              "description": "of immunosuppressive agent using elution from implanted device"
+            },
+            {
+              "code": "1.IL.35.H2-M8",
+              "description": "of immunosuppressive agent using elution from other device"
+            },
+            {
+              "code": "1.IL.35.HH-T9",
+              "description": "of pharmacological agent NEC using percutaneous transcatheter\napproach"
+            },
+            {
+              "code": "1.IL.35.HA-T9",
+              "description": "of pharmacological agent NEC using percutaneous [needle] approach"
+            },
+            {
+              "code": "1.IL.35.HZ-M3",
+              "description": "of plant alkaloids and other natural products using elution from implanted device"
+            },
+            {
+              "code": "1.IL.35.H2-M3",
+              "description": "of plant alkaloids and other natural products using elution from other device"
+            },
+            {
+              "code": "1.IL.35.HH-1C",
+              "description": "of thrombolytic agent using percutaneous transcatheter\napproach"
+            }
+          ],
+          "allAttributes": [
+            {
+              "name": "S",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            },
+            {
+              "name": "L",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            },
+            {
+              "name": "E",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            }
+          ],
+          "isChosen": true,
+          "appliedQualifier": {
+            "code": "1.IL.35.HH-1C",
+            "description": "of thrombolytic agent using percutaneous transcatheter\napproach"
+          },
+          "appliedAttributes": {
+            "S": {
+              "code": "/",
+              "description": "N/A"
+            },
+            "L": {
+              "code": "/",
+              "description": "N/A"
+            },
+            "E": {
+              "code": "/",
+              "description": "N/A"
+            }
+          },
+          "reasoning": "This code is selected based on the 'codeAlso' instruction in 1.IJ.50 for 'Any infusion or injection of thrombolytic agent directly into coronary artery'. Code 1.IL.35 is for local pharmacotherapy to the heart vessels. The qualifier 'HH-1C' is selected as it describes the infusion of a thrombolytic agent (specifically including streptokinase) via a percutaneous transcatheter approach. Attributes are Not Applicable for this code.",
+          "similarityScore": 0.9276939630508423
+        },
+        {
+          "code": "3.IP.10",
+          "description": "Xray, heart with coronary arteries S 55 L 20",
+          "includes": [],
+          "excludes": [],
+          "code_also": [],
+          "note": [],
+          "otherQualifiers": [
+            {
+              "code": "3.IP.10.VCand",
+              "description": "3.IP.10.VZonly]"
+            },
+            {
+              "code": "3.IP.10.VC",
+              "description": "of right heart structures using percutaneous transluminal venous (antegrade) approach"
+            },
+            {
+              "code": "3.IP.10.VX",
+              "description": "of left heart structures using percutaneous transluminal arterial (retrograde) approach"
+            },
+            {
+              "code": "3.IP.10.VZ",
+              "description": "of left heart structures using percutaneous transluminal transseptal approach"
+            }
+          ],
+          "allAttributes": [
+            {
+              "name": "S",
+              "code": "0",
+              "description": "Not applicable",
+              "type": "Mandatory"
+            },
+            {
+              "name": "S",
+              "code": "DX",
+              "description": "Diagnostic",
+              "type": "Mandatory"
+            },
+            {
+              "name": "S",
+              "code": "I",
+              "description": "Intra‐operative",
+              "type": "Mandatory"
+            },
+            {
+              "name": "S",
+              "code": "UN",
+              "description": "Unknown",
+              "type": "Mandatory"
+            },
+            {
+              "name": "L",
+              "code": "0",
+              "description": "null",
+              "type": "Mandatory"
+            },
+            {
+              "name": "L",
+              "code": "CB",
+              "description": "Combined",
+              "type": "Mandatory"
+            },
+            {
+              "name": "L",
+              "code": "FY",
+              "description": "Femoral artery",
+              "type": "Mandatory"
+            },
+            {
+              "name": "L",
+              "code": "LY",
+              "description": "Left arm artery",
+              "type": "Mandatory"
+            },
+            {
+              "name": "L",
+              "code": "RY",
+              "description": "Right arm artery",
+              "type": "Mandatory"
+            },
+            {
+              "name": "L",
+              "code": "U",
+              "description": "Unspecified",
+              "type": "Mandatory"
+            },
+            {
+              "name": "E",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            }
+          ],
+          "isChosen": true,
+          "appliedQualifier": {
+            "code": "3.IP.10.VX",
+            "description": "of left heart structures using percutaneous transluminal arterial (retrograde) approach"
+          },
+          "appliedAttributes": {
+            "S": {
+              "code": "DX",
+              "description": "Diagnostic"
+            },
+            "L": {
+              "code": "FY",
+              "description": "Femoral artery"
+            },
+            "E": {
+              "code": "/",
+              "description": "N/A"
+            }
+          },
+          "reasoning": "This code is selected based on the 'codeAlso' instruction in 1.IJ.50 for 'Any coronary angiography'. 3.IP.10 is for 'Xray, heart with coronary arteries'. The qualifier 'VX' is chosen for coronary angiography via a percutaneous arterial approach. The mandatory attribute 'S' is 'DX' as the angiogram was diagnostic. The mandatory attribute 'L' is 'FY' for the specified 'femoral artery approach'.",
+          "similarityScore": 0.9220817685127258
+        },
+        {
+          "code": "1.JE.50",
+          "description": "Dilation, carotid artery S 5 L 2",
+          "includes": [
+            "Angioplasty, carotid artery"
+          ],
+          "excludes": [],
+          "code_also": [
+            "Any endarterectomy, carotid artery (see 1.JE.57.^^)",
+            "Any infusion of thrombolytic agent (see 1.KV.35.^^)",
+            "Pharmacotherapy delivered via drug eluting stent (see 1.KV.35.^^)"
+          ],
+          "note": [],
+          "otherQualifiers": [
+            {
+              "code": "1.JE.50.GQ-BD",
+              "description": "using percutaneous transluminal (arterial) approach and mechanical balloon dilator"
+            },
+            {
+              "code": "1.JE.50.GQ-BP",
+              "description": "using percutaneous transluminal (arterial) approach and dilating device NEC"
+            },
+            {
+              "code": "1.JE.50.GQ-NR",
+              "description": "using percutaneous transluminal (arterial) approach and (endovascular) stent (insertion)"
+            },
+            {
+              "code": "1.JE.50.GQ-OA",
+              "description": "using percutaneous transluminal (arterial) approach and balloon dilator with (endovascular) stent (insertion)"
+            }
+          ],
+          "allAttributes": [
+            {
+              "name": "S",
+              "code": "A",
+              "description": "Abandoned after onset",
+              "type": "Optional"
+            },
+            {
+              "name": "S",
+              "code": "R",
+              "description": "Revision",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "B",
+              "description": "Bilateral",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "L",
+              "description": "Left",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "R",
+              "description": "Right",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "S",
+              "description": "Single",
+              "type": "Optional"
+            },
+            {
+              "name": "E",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            }
+          ],
+          "isChosen": false,
+          "appliedQualifier": null,
+          "appliedAttributes": null,
+          "reasoning": "",
+          "similarityScore": 0.9316515326499939
+        },
+        {
+          "code": "1.JT.50",
+          "description": "Dilation, subclavian vein S 5 L 2",
+          "includes": [],
+          "excludes": [],
+          "code_also": [
+            "Any infusion of thrombolytic agent (see 1.KX.35.^^)",
+            "Any thrombectomy, subclavian vein (see 1.JT.57.^^)"
+          ],
+          "note": [],
+          "otherQualifiers": [
+            {
+              "code": "1.JT.50.GR-BD",
+              "description": "using percutaneous transluminal approach and balloon dilator"
+            },
+            {
+              "code": "1.JT.50.GR-OA",
+              "description": "using percutaneous transluminal approach balloon dilator with (endovascular) stent (insertion)"
+            }
+          ],
+          "allAttributes": [
+            {
+              "name": "S",
+              "code": "A",
+              "description": "Abandoned after onset",
+              "type": "Optional"
+            },
+            {
+              "name": "S",
+              "code": "R",
+              "description": "Revision",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "B",
+              "description": "Bilateral",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "L",
+              "description": "Left",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "R",
+              "description": "Right",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "S",
+              "description": "Single",
+              "type": "Optional"
+            },
+            {
+              "name": "E",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            }
+          ],
+          "isChosen": false,
+          "appliedQualifier": null,
+          "appliedAttributes": null,
+          "reasoning": "",
+          "similarityScore": 0.9302207231521606
+        },
+        {
+          "code": "1.JY.50",
+          "description": "Dilation, thoracic vessels NEC S 5",
+          "includes": [
+            "Angioplasty, thoracic vessels NEC"
+          ],
+          "excludes": [],
+          "code_also": [
+            "Any endarterectomy, thoracic vessels NEC (see 1.JY.57.^^)",
+            "Any infusion of thrombolytic agent (see 1.KV.35.^^or 1.KX.35.^^)",
+            "Pharmacotherapy delivered via drug eluting stent (see 1.KV.35.^^)"
+          ],
+          "note": [],
+          "otherQualifiers": [
+            {
+              "code": "1.JY.50.GP-BD",
+              "description": "using balloon dilator using percutaneous transluminal\napproach [e.g. endovascular]"
+            },
+            {
+              "code": "1.JY.50.LA-BD",
+              "description": "using balloon dilator using open approach"
+            },
+            {
+              "code": "1.JY.50.GP-NR",
+              "description": "using stent using percutaneous transluminal\napproach [e.g. endovascular]"
+            },
+            {
+              "code": "1.JY.50.LA-NR",
+              "description": "using stent using open approach"
+            }
+          ],
+          "allAttributes": [
+            {
+              "name": "S",
+              "code": "A",
+              "description": "Abandoned after onset",
+              "type": "Optional"
+            },
+            {
+              "name": "S",
+              "code": "R",
+              "description": "Revision",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            },
+            {
+              "name": "E",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            }
+          ],
+          "isChosen": false,
+          "appliedQualifier": null,
+          "appliedAttributes": null,
+          "reasoning": "",
+          "similarityScore": 0.9289687871932983
+        },
+        {
+          "code": "1.KY.50",
+          "description": "Dilation, artery with vein L 70",
+          "includes": [
+            "Angioplasty, arteriovenous fistula"
+          ],
+          "excludes": [],
+          "code_also": [
+            "Any drug elution from balloon (following dilation of stenosis) (see 1.KV.35.^^)",
+            "Any endarterectomy, artery with vein (see 1.KY.57.^^)"
+          ],
+          "note": [],
+          "otherQualifiers": [
+            {
+              "code": "1.KY.50.GP-BD",
+              "description": "using percutaneous transluminal approach and balloon dilator"
+            }
+          ],
+          "allAttributes": [
+            {
+              "name": "S",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            },
+            {
+              "name": "L",
+              "code": "LA",
+              "description": "Left arm",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "LL",
+              "description": "Left leg",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "RA",
+              "description": "Right arm",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "RL",
+              "description": "Right leg",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "Z",
+              "description": "Other NEC",
+              "type": "Optional"
+            },
+            {
+              "name": "E",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            }
+          ],
+          "isChosen": false,
+          "appliedQualifier": null,
+          "appliedAttributes": null,
+          "reasoning": "",
+          "similarityScore": 0.9287425875663757
+        },
+        {
+          "code": "3.IJ.30",
+          "description": "Ultrasound, coronary arteries S 1",
+          "includes": [
+            "Ultrasound guidance, coronary arteries (interventions)"
+          ],
+          "excludes": [
+            "Ultrasound, heart with coronary arteries (see 3.IP.30.^^)"
+          ],
+          "code_also": [],
+          "note": [],
+          "otherQualifiers": [
+            {
+              "code": "3.IJ.30.GP",
+              "description": "with percutaneous transluminal (cardiac catheter) inspection"
+            }
+          ],
+          "allAttributes": [
+            {
+              "name": "S",
+              "code": "I",
+              "description": "Intra‐operative",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            },
+            {
+              "name": "E",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            }
+          ],
+          "isChosen": false,
+          "appliedQualifier": null,
+          "appliedAttributes": null,
+          "reasoning": "",
+          "similarityScore": 0.9286521673202515
+        },
+        {
+          "code": "1.IJ.55",
+          "description": "Removal of device, coronary arteries S 4 E 4",
+          "includes": [],
+          "excludes": [
+            "that for replacement of stent (see specific intervention)"
+          ],
+          "code_also": [],
+          "note": [],
+          "otherQualifiers": [
+            {
+              "code": "1.IJ.55.GQ-NR",
+              "description": "of endovascular stent using percutaneous transluminal approach"
+            },
+            {
+              "code": "1.IJ.55.LA-NR",
+              "description": "of endovascular stent using open approach"
+            }
+          ],
+          "allAttributes": [
+            {
+              "name": "S",
+              "code": "A",
+              "description": "Abandoned after onset",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            },
+            {
+              "name": "E",
+              "code": "1",
+              "description": "One",
+              "type": "Mandatory"
+            },
+            {
+              "name": "E",
+              "code": "2",
+              "description": "Two",
+              "type": "Mandatory"
+            },
+            {
+              "name": "E",
+              "code": "3",
+              "description": "Three",
+              "type": "Mandatory"
+            },
+            {
+              "name": "E",
+              "code": "4",
+              "description": "Four",
+              "type": "Mandatory"
+            },
+            {
+              "name": "E",
+              "code": "5",
+              "description": "Five",
+              "type": "Mandatory"
+            },
+            {
+              "name": "E",
+              "code": "6",
+              "description": "Six",
+              "type": "Mandatory"
+            },
+            {
+              "name": "E",
+              "code": "D",
+              "description": "Greater than six",
+              "type": "Mandatory"
+            }
+          ],
+          "isChosen": false,
+          "appliedQualifier": null,
+          "appliedAttributes": null,
+          "reasoning": "",
+          "similarityScore": 0.9276504516601562
+        },
+        {
+          "code": "1.IK.50",
+          "description": "Dilation, coronary veins S 5",
+          "includes": [
+            "Dilation, coronary sinus"
+          ],
+          "excludes": [],
+          "code_also": [],
+          "note": [],
+          "otherQualifiers": [
+            {
+              "code": "1.IK.50.GP-BD",
+              "description": "percutaneous transluminal approach using balloon dilator"
+            }
+          ],
+          "allAttributes": [
+            {
+              "name": "S",
+              "code": "A",
+              "description": "Abandoned after onset",
+              "type": "Optional"
+            },
+            {
+              "name": "S",
+              "code": "R",
+              "description": "Revision",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            },
+            {
+              "name": "E",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            }
+          ],
+          "isChosen": false,
+          "appliedQualifier": null,
+          "appliedAttributes": null,
+          "reasoning": "",
+          "similarityScore": 0.9258065223693848
+        },
+        {
+          "code": "2.IL.70",
+          "description": "Inspection, vessels of heart",
+          "includes": [
+            "Inspection of coronary arteries and/or veins"
+          ],
+          "excludes": [],
+          "code_also": [],
+          "note": [],
+          "otherQualifiers": [
+            {
+              "code": "2.IL.70.DA",
+              "description": "using endoscopic approach"
+            },
+            {
+              "code": "2.IL.70.GP",
+              "description": "using percutaneous transluminal approach"
+            },
+            {
+              "code": "2.IL.70.LA",
+              "description": "using open approach"
+            }
+          ],
+          "allAttributes": [
+            {
+              "name": "S",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            },
+            {
+              "name": "L",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            },
+            {
+              "name": "E",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            }
+          ],
+          "isChosen": false,
+          "appliedQualifier": null,
+          "appliedAttributes": null,
+          "reasoning": "",
+          "similarityScore": 0.9255869388580322
+        },
+        {
+          "code": "1.JW.50",
+          "description": "Dilation, intracranial vessels S 5",
+          "includes": [
+            "Angioplasty, intracranial"
+          ],
+          "excludes": [],
+          "code_also": [
+            "Any endarterectomy, intracranial vessels (see 1.JW.57.^^)",
+            "Any infusion of thrombolytic agent (see 1.JW.35.^^)",
+            "Pharmacotherapy delivered via drug eluting stent (see 1.JW.35.^^)"
+          ],
+          "note": [],
+          "otherQualifiers": [
+            {
+              "code": "1.JW.50.GQ-BD",
+              "description": "using balloon dilator using percutaneous transluminal\n(arterial) approach [e.g.\nendovascular]"
+            },
+            {
+              "code": "1.JW.50.SZ-BD",
+              "description": "using balloon dilator using open craniotomy [craniectomy]\nflap approach"
+            },
+            {
+              "code": "1.JW.50.GQ-NR",
+              "description": "using stent using percutaneous transluminal\n(arterial) approach [e.g.\nendovascular]"
+            },
+            {
+              "code": "1.JW.50.SZ-NR",
+              "description": "using stent using open craniotomy [craniectomy]\nflap approach"
+            },
+            {
+              "code": "1.JW.50.GQ-OA",
+              "description": "using balloon dilator and stent using percutaneous transluminal\n(arterial) approach [e.g.\nendovascular]"
+            }
+          ],
+          "allAttributes": [
+            {
+              "name": "S",
+              "code": "A",
+              "description": "Abandoned after onset",
+              "type": "Optional"
+            },
+            {
+              "name": "S",
+              "code": "R",
+              "description": "Revision",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            },
+            {
+              "name": "E",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            }
+          ],
+          "isChosen": false,
+          "appliedQualifier": null,
+          "appliedAttributes": null,
+          "reasoning": "",
+          "similarityScore": 0.9255149364471436
+        },
+        {
+          "code": "1.JQ.50",
+          "description": "Dilation, jugular veins S 5 L 2",
+          "includes": [],
+          "excludes": [],
+          "code_also": [
+            "Any infusion of thrombolytic agent (see 1.KX.35.^^)",
+            "Any thrombectomy, jugular veins (see 1.JQ.57.^^)"
+          ],
+          "note": [],
+          "otherQualifiers": [
+            {
+              "code": "1.JQ.50.GR-BD",
+              "description": "using percutaneous transluminal approach and balloon dilator"
+            },
+            {
+              "code": "1.JQ.50.GR-OA",
+              "description": "using percutaneous transluminal approach balloon dilator with (endovascular) stent (insertion)"
+            }
+          ],
+          "allAttributes": [
+            {
+              "name": "S",
+              "code": "A",
+              "description": "Abandoned after onset",
+              "type": "Optional"
+            },
+            {
+              "name": "S",
+              "code": "R",
+              "description": "Revision",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "B",
+              "description": "Bilateral",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "L",
+              "description": "Left",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "R",
+              "description": "Right",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "S",
+              "description": "Single",
+              "type": "Optional"
+            },
+            {
+              "name": "E",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            }
+          ],
+          "isChosen": false,
+          "appliedQualifier": null,
+          "appliedAttributes": null,
+          "reasoning": "",
+          "similarityScore": 0.9253900051116943
+        },
+        {
+          "code": "1.IM.50",
+          "description": "Dilation, pulmonary artery S 5 L 92",
+          "includes": [],
+          "excludes": [],
+          "code_also": [
+            "Any endarterectomy or thrombectomy, pulmonary artery (see 1.IM.57.^^)",
+            "Any infusion of thrombolytic agent (see 1.KV.35.^^)",
+            "Pharmacotherapy delivered via drug eluting stent (see 1.KV.35.^^)",
+            "Removal of pulmonary artery band (see 1.IM.55.^^)"
+          ],
+          "note": [],
+          "otherQualifiers": [
+            {
+              "code": "1.IM.50.GQ-BD",
+              "description": "using percutaneous transluminal approach and balloon dilator"
+            },
+            {
+              "code": "1.IM.50.GQ-OA",
+              "description": "using percutaneous transluminal approach and balloon dilator with (endovascular) stent (insertion)"
+            },
+            {
+              "code": "1.IM.50.LA-GX",
+              "description": "using open approach and device NEC"
+            }
+          ],
+          "allAttributes": [
+            {
+              "name": "S",
+              "code": "A",
+              "description": "Abandoned after onset",
+              "type": "Optional"
+            },
+            {
+              "name": "S",
+              "code": "R",
+              "description": "Revision",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "B",
+              "description": "Bilateral",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "L",
+              "description": "Left",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "N",
+              "description": "Main",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "R",
+              "description": "Right",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "S",
+              "description": "Single",
+              "type": "Optional"
+            },
+            {
+              "name": "E",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            }
+          ],
+          "isChosen": false,
+          "appliedQualifier": null,
+          "appliedAttributes": null,
+          "reasoning": "",
+          "similarityScore": 0.9250996112823486
+        },
+        {
+          "code": "1.JE.55",
+          "description": "Removal of device, carotid artery S 4 L 2",
+          "includes": [],
+          "excludes": [],
+          "code_also": [],
+          "note": [],
+          "otherQualifiers": [
+            {
+              "code": "1.JE.55.GQ-NR",
+              "description": "of endovascular stent using percutaneous transluminal approach"
+            },
+            {
+              "code": "1.JE.55.LA-NR",
+              "description": "of endovascular stent using open approach"
+            }
+          ],
+          "allAttributes": [
+            {
+              "name": "S",
+              "code": "A",
+              "description": "Abandoned after onset",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "B",
+              "description": "Bilateral",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "L",
+              "description": "Left",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "R",
+              "description": "Right",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "S",
+              "description": "Single",
+              "type": "Optional"
+            },
+            {
+              "name": "E",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            }
+          ],
+          "isChosen": false,
+          "appliedQualifier": null,
+          "appliedAttributes": null,
+          "reasoning": "",
+          "similarityScore": 0.9241790175437927
+        },
+        {
+          "code": "1.JM.50",
+          "description": "Dilation, arteries of arm NEC S 5 L 2",
+          "includes": [
+            "Angioplasty, axillary artery",
+            "Angioplasty, brachial artery"
+          ],
+          "excludes": [],
+          "code_also": [
+            "Any endarterectomy, arteries of arm NEC (see 1.JM.57.^^)",
+            "Pharmacotherapy delivered via drug eluting stent (see 1.KV.35.^^)"
+          ],
+          "note": [],
+          "otherQualifiers": [
+            {
+              "code": "1.JM.50.GQ-BD",
+              "description": "using percutaneous transluminal approach and balloon dilator"
+            },
+            {
+              "code": "1.JM.50.GQ-BP",
+              "description": "using percutaneous transluminal approach and dilating device NEC"
+            },
+            {
+              "code": "1.JM.50.GQ-OA",
+              "description": "using percutaneous transluminal approach and balloon dilator with (endovascular) stent"
+            }
+          ],
+          "allAttributes": [
+            {
+              "name": "S",
+              "code": "A",
+              "description": "Abandoned after onset",
+              "type": "Optional"
+            },
+            {
+              "name": "S",
+              "code": "R",
+              "description": "Revision",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "B",
+              "description": "Bilateral",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "L",
+              "description": "Left",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "R",
+              "description": "Right",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "S",
+              "description": "Single",
+              "type": "Optional"
+            },
+            {
+              "name": "E",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            }
+          ],
+          "isChosen": false,
+          "appliedQualifier": null,
+          "appliedAttributes": null,
+          "reasoning": "",
+          "similarityScore": 0.924127459526062
+        },
+        {
+          "code": "1.IN.50",
+          "description": "Dilation, pulmonary vein S 5 L 92",
+          "includes": [],
+          "excludes": [],
+          "code_also": [],
+          "note": [],
+          "otherQualifiers": [
+            {
+              "code": "1.IN.50.GR-BD",
+              "description": "using percutaneous transluminal approach [e.g. endovascular] and balloon dilator"
+            },
+            {
+              "code": "1.IN.50.GR-NR",
+              "description": "using percutaneous transluminal approach [e.g. endovascular] and stent"
+            },
+            {
+              "code": "1.IN.50.LA-BD",
+              "description": "using open approach and balloon dilator"
+            },
+            {
+              "code": "1.IN.50.LA-NR",
+              "description": "using open approach and stent"
+            }
+          ],
+          "allAttributes": [
+            {
+              "name": "S",
+              "code": "A",
+              "description": "Abandoned after onset",
+              "type": "Optional"
+            },
+            {
+              "name": "S",
+              "code": "R",
+              "description": "Revision",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "B",
+              "description": "Bilateral",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "L",
+              "description": "Left",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "N",
+              "description": "Main",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "R",
+              "description": "Right",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "S",
+              "description": "Single",
+              "type": "Optional"
+            },
+            {
+              "name": "E",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            }
+          ],
+          "isChosen": false,
+          "appliedQualifier": null,
+          "appliedAttributes": null,
+          "reasoning": "",
+          "similarityScore": 0.9235807061195374
+        },
+        {
+          "code": "1.IJ.26",
+          "description": "Brachytherapy, coronary arteries S 35",
+          "includes": [
+            "Endocurietherapy, coronary arteries",
+            "Implantation of radioactive material, coronary arteries",
+            "Intravascular brachytherapy, coronary artery"
+          ],
+          "excludes": [],
+          "code_also": [
+            "any associated angioplasty, coronary arteries (see 1.IJ.50.^^)"
+          ],
+          "note": [],
+          "otherQualifiers": [
+            {
+              "code": "1.IJ.26.GQ",
+              "description": "using percutaneous transluminal arterial approach"
+            }
+          ],
+          "allAttributes": [
+            {
+              "name": "S",
+              "code": "PM",
+              "description": "Permanent",
+              "type": "Optional"
+            },
+            {
+              "name": "S",
+              "code": "TM",
+              "description": "Temporary",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            },
+            {
+              "name": "E",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            }
+          ],
+          "isChosen": false,
+          "appliedQualifier": null,
+          "appliedAttributes": null,
+          "reasoning": "",
+          "similarityScore": 0.9234825372695923
+        },
+        {
+          "code": "1.KG.50",
+          "description": "Dilation, arteries of leg NEC S 5 L 2",
+          "includes": [
+            "Angioplasty, lower limb arteries"
+          ],
+          "excludes": [
+            "that with partial excision of artery (see 1.KG.87.^^)"
+          ],
+          "code_also": [
+            "Any endarterectomy, femoral, tibial and popliteal arteries (see 1.KG.57.^^)",
+            "Any infusion of thrombolytic agent (see 1.KG.35.^^)",
+            "Pharmacotherapy delivered via drug eluting stent (see 1.KG.35.^^)"
+          ],
+          "note": [],
+          "otherQualifiers": [
+            {
+              "code": "1.KG.50.GQ-BD",
+              "description": "using percutaneous transluminal approach and balloon dilator"
+            },
+            {
+              "code": "1.KG.50.GQ-BF",
+              "description": "using percutaneous transluminal approach with laser and balloon dilator"
+            },
+            {
+              "code": "1.KG.50.GQ-BP",
+              "description": "using percutaneous transluminal approach and dilating device NEC"
+            },
+            {
+              "code": "1.KG.50.GQ-OA",
+              "description": "using percutaneous transluminal approach and balloon dilator with (endovascular) stent (insertion)"
+            },
+            {
+              "code": "1.KG.50.LA-BD",
+              "description": "using open approach [e.g. arteriotomy] and balloon dilator"
+            },
+            {
+              "code": "1.KG.50.LA-BP",
+              "description": "using open approach [e.g. arteriotomy] and dilating device NEC"
+            },
+            {
+              "code": "1.KG.50.LA-OA",
+              "description": "using open approach [e.g. arteriotomy] and balloon dilator with (endovascular) stent (insertion)"
+            }
+          ],
+          "allAttributes": [
+            {
+              "name": "S",
+              "code": "A",
+              "description": "Abandoned after onset",
+              "type": "Optional"
+            },
+            {
+              "name": "S",
+              "code": "R",
+              "description": "Revision",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "B",
+              "description": "Bilateral",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "L",
+              "description": "Left",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "R",
+              "description": "Right",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "S",
+              "description": "Single",
+              "type": "Optional"
+            },
+            {
+              "name": "E",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            }
+          ],
+          "isChosen": false,
+          "appliedQualifier": null,
+          "appliedAttributes": null,
+          "reasoning": "",
+          "similarityScore": 0.9232072234153748
+        },
+        {
+          "code": "1.JK.55",
+          "description": "Removal of device, subclavian artery S 4 L 2",
+          "includes": [],
+          "excludes": [],
+          "code_also": [],
+          "note": [],
+          "otherQualifiers": [
+            {
+              "code": "1.JK.55.GQ-NR",
+              "description": "of endovascular stent using percutaneous transluminal approach"
+            },
+            {
+              "code": "1.JK.55.LA-NR",
+              "description": "of endovascular stent using open approach"
+            }
+          ],
+          "allAttributes": [
+            {
+              "name": "S",
+              "code": "A",
+              "description": "Abandoned after onset",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "B",
+              "description": "Bilateral",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "L",
+              "description": "Left",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "R",
+              "description": "Right",
+              "type": "Optional"
+            },
+            {
+              "name": "L",
+              "code": "S",
+              "description": "Single",
+              "type": "Optional"
+            },
+            {
+              "name": "E",
+              "code": "/",
+              "description": "N/A",
+              "type": "N/A"
+            }
+          ],
+          "isChosen": false,
+          "appliedQualifier": null,
+          "appliedAttributes": null,
+          "reasoning": "",
+          "similarityScore": 0.9231778383255005
+        }
+      ],
+      "searchTimeMs": 44008
+    }
+  }
+}

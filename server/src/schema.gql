@@ -179,6 +179,9 @@ type CciAiEnhancedResponse {
 
   """Overall status: matched, partial, or not_found"""
   status: String!
+
+  """Search time in milliseconds"""
+  searchTimeMs: Float!
 }
 
 type CodeDto {

@@ -248,7 +248,7 @@ private buildMetaAIPrompt(
     `       { "type":"L", "code":"/" },`,
     `       { "type":"E", "code":"/" }`,
     `     ],`,
-    `     "rationale": "…single-sentence explanation reasons for chosen rubric, qualifier and coding attributes reference Code also if applied…"` ,
+    `     "rationale": "…single-sentence explanation reasons for chosen rubric, qualifier and coding attributes…"` ,
     `   },`,
     `   …`,
     ` ]`,
