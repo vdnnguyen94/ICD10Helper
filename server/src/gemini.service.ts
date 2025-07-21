@@ -167,5 +167,11 @@ The user will provide the intervention term or scenario.`;
       return { codes: [], status: 'not_found' }; // Ensure this matches CCIResponse structure
     }
   }
-}
 
+  async generateContent(contents: string) {
+    return this.ai.models.generateContent({
+      model: this.modelId,
+      contents,
+    });
+  }
+}
