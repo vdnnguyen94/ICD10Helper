@@ -491,7 +491,6 @@ export default function CciEnhancePage() {
   // Combine loading states into a single isLoading flag
   const isLoading = vectorLoading || aiLoading || dualLoading;
 
-  // CORRECT
   const performLookup = (termToLookup) => {
       if (!termToLookup.trim()) {
         setError('Please enter a search term.');
@@ -515,6 +514,18 @@ export default function CciEnhancePage() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     performLookup(searchTerm);
+  };
+
+  const exampleTerms = [
+    "Arthrotomy of right knee with total excision of right medial meniscus and patellar shaving",
+    "Tetanus booster injection, following puncture of left foot (< 5 cm) on rusty nail, cleansing and suture of injury",
+    "Systemic (intravenous –IV) chemotherapy with methotrexate",
+    "Patient is brought the cardiac cath room from emergency with a diagnosis of STEMI. No thrombolysis. Coronary angiograms taken; balloon dilation and stent insertion. LAD and Cx coronary arteries, with intracoronary catheter-directed infusion of streptokinase; femoral artery approach."
+  ];
+
+  const handleExampleClick = (term) => {
+    setSearchTerm(term);
+    performLookup(term);
   };
   
   useEffect(() => {
@@ -570,13 +581,57 @@ export default function CciEnhancePage() {
           )}
         </header>
 
+        {/* NEW: How It Works Section */}
+        <section className="mb-12 text-center">
+            <div className="grid md:grid-cols-3 gap-8">
+                {/* Step 1: Database & Vector Search */}
+                <div className="bg-slate-800/50 p-6 rounded-lg border border-slate-700">
+                    <div className="flex justify-center mb-4">
+                        <div className="p-3 bg-sky-500/10 rounded-full border border-sky-500/30">
+                            <Activity size={24} className="text-sky-400" />
+                        </div>
+                    </div>
+                    <h3 className="text-xl font-bold mb-2 text-white">1. Initial Vector Search</h3>
+                    <p className="text-sm text-slate-300">
+                        Our search begins in a database with over 3,900 updated CCI rubrics from CIHI. Vector search finds the top 50 matches based on your query and ranks them by similarity.
+                    </p>
+                </div>
+
+                {/* Step 2: AI Analysis & Refinement */}
+                <div className="bg-slate-800/50 p-6 rounded-lg border border-slate-700">
+                    <div className="flex justify-center mb-4">
+                        <div className="p-3 bg-emerald-500/10 rounded-full border border-emerald-500/30">
+                            <BrainCircuit size={24} className="text-emerald-400" />
+                        </div>
+                    </div>
+                    <h3 className="text-xl font-bold mb-2 text-white">2. AI-Powered Analysis</h3>
+                    <p className="text-sm text-slate-300">
+                        The AI then analyzes the top results, reading rubric details like 'Notes,' 'Includes,' and 'Code Also'. It uses 'Excludes' rules to eliminate incorrect codes.
+                    </p>
+                </div>
+
+                {/* Step 3: Coder Judgement */}
+                <div className="bg-slate-800/50 p-6 rounded-lg border border-slate-700">
+                    <div className="flex justify-center mb-4">
+                        <div className="p-3 bg-purple-500/10 rounded-full border border-purple-500/30">
+                            <SlidersHorizontal size={24} className="text-purple-400" />
+                        </div>
+                    </div>
+                    <h3 className="text-xl font-bold mb-2 text-white">3. Detailed Coder Review</h3>
+                    <p className="text-sm text-slate-300">
+                        We return results with detailed documentation, including qualifiers and attributes, so the Coder can make a final, informed judgment based on the AI's analysis.
+                    </p>
+                </div>
+            </div>
+        </section>
+
         <section ref={lookupSectionRef} className="mb-12 bg-slate-800/50 p-8 rounded-xl shadow-2xl border border-slate-700">
           <h2 className="text-3xl font-semibold mb-6 text-cyan-300 flex items-center">
-            <BrainCircuit size={28} className="mr-3 text-cyan-400" />
+            <Search size={28} className="mr-3 text-cyan-400" />
             Find CCI Code
           </h2>
 
-          <form onSubmit={handleFormSubmit} className="space-y-6">
+          <form onSubmit={handleFormSubmit} className="space-y-4">
             {/* Search Mode Selector */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <button type="button" onClick={() => setSearchMode('openai')} className={`p-4 rounded-lg border-2 text-left transition-all ${searchMode === 'openai' ? 'border-emerald-500 bg-emerald-500/10' : 'border-slate-600 hover:border-slate-500'}`}>
@@ -594,18 +649,18 @@ export default function CciEnhancePage() {
             </div>
 
             {/* Input and Submit */}
-            <div className="flex flex-col sm:flex-row gap-4 items-center">
-              <input
-                type="text"
+            <div className="flex flex-col sm:flex-row gap-4 items-start pt-4">
+              <textarea
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder="Enter clinical term (e.g., 'endoscopic dilation of esophagus')"
-                className="flex-grow w-full sm:w-auto bg-slate-700 text-white placeholder-slate-400 border-2 border-slate-600 rounded-lg py-3 px-4 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-colors"
+                className="flex-grow w-full sm:w-auto bg-slate-700 text-white placeholder-slate-400 border-2 border-slate-600 rounded-lg py-3 px-4 focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 outline-none transition-colors min-h-[80px] resize-y"
+                rows="3"
               />
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[180px]"
+                className="w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-purple-600 hover:from-cyan-600 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[180px] h-[80px]"
               >
                 {isLoading ? (
                   <>
@@ -621,6 +676,24 @@ export default function CciEnhancePage() {
                   </>
                 )}
               </button>
+            </div>
+            
+            {/* Example prompts section */}
+            <div className="pt-2">
+                <p className="text-sm text-slate-400 mb-3">Or try one of these examples:</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {exampleTerms.map((term, index) => (
+                        <button
+                            type="button"
+                            key={index}
+                            onClick={() => handleExampleClick(term)}
+                            title={term}
+                            className="text-left text-xs bg-slate-700/50 hover:bg-slate-600/80 border border-slate-600 rounded-md p-3 transition-colors text-slate-300 hover:text-white truncate"
+                        >
+                            <strong className="text-cyan-400">Example {index + 1}:</strong> {term}
+                        </button>
+                    ))}
+                </div>
             </div>
           </form>
 
