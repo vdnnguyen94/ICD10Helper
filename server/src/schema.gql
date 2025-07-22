@@ -197,6 +197,41 @@ type CciUnifiedResponseDto {
   searchTimeMs: Float!
 }
 
+"""Per-code comparison between OpenAI & Gemini"""
+type CciDualComparisonDetail {
+  code: String!
+  chosenByOpenAI: Boolean!
+  chosenByGemini: Boolean!
+  qualifierMatch: Boolean!
+  openaiAttributes: AppliedAttribute
+  geminiAttributes: AppliedAttribute
+  attributeMatch_S: Boolean!
+  attributeMatch_L: Boolean!
+  attributeMatch_E: Boolean!
+  fullMatch: Boolean!
+}
+
+"""Aggregate stats across both AIs"""
+type CciDualComparisonSummary {
+  totalCodes: Float!
+  openaiChosenCount: Float!
+  geminiChosenCount: Float!
+  codesAgreed: Float!
+  codesDisagreed: Float!
+  fullMatches: Float!
+  partialMatches: Float!
+}
+
+"""Dual-AI response, with both raw lists plus comparison"""
+type CciDualEnhancedResponseDto {
+  openai: [CciUnifiedResultItem!]!
+  gemini: [CciUnifiedResultItem!]!
+  summary: CciDualComparisonSummary!
+  details: [CciDualComparisonDetail!]!
+  searchTimeMsOpenAI: Float!
+  searchTimeMsGemini: Float!
+}
+
 type Query {
   hello: String!
   checkEnv: String!
@@ -209,6 +244,7 @@ type Query {
   Performs a multi-step Gemini AI analysis on top of a vector search for CCI codes, returning a unified result shape.
   """
   cciGeminiEnhancedSearch(term: String!): CciUnifiedResponseDto!
+  cciDualEnhancedSearch(term: String!): CciDualEnhancedResponseDto!
 }
 
 type Mutation {

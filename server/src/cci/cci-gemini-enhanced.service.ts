@@ -13,7 +13,7 @@ import { CciGeminiEnhancedResultItem } from './cci-gemini-enhanced.types';
 // Shape of one AI analysis item
 interface GeminiCciAnalysis {
     code: string;
-    chosenQualifier: string;
+    chosenQualifier: string | { code: string; description: string };
     chosenAttributes: { type: 'S' | 'L' | 'E'; code: string }[];
     rationale: string;
 }
@@ -59,28 +59,41 @@ export class CciGeminiEnhancedService {
       analyses = [];
     }
 
-    // 3) Build a map of AI selections by rubric code
-    const selectionMap = new Map<string, GeminiCciAnalysis>(
-      analyses.map(a => [a.code, a])
-    );
+// 3) Build a map of AI selections by rubric code
+const selectionMap = new Map<string, GeminiCciAnalysis>();
+analyses.forEach(a => {
+  // Extract the base code (e.g., "1.IJ.50") from the full code ("1.IJ.50.GQ-OA")
+  const baseCode = a.code.split('.').slice(0, 3).join('.');
+  if (baseCode) {
+    selectionMap.set(baseCode, a);
+  }
+});
 
-    // 4) Merge AI picks back into the original 50 candidates
-    const merged: CciGeminiEnhancedResultItem[] = candidates.map(rubric => {
-        
+// 4) Merge AI picks back into the original 50 candidates
+const merged: CciGeminiEnhancedResultItem[] = candidates.map(rubric => {
+
     const ai = selectionMap.get(rubric.code);
 
-      // find the QualifierDto object matching the chosen code, if any
-    const fullQualifierCode = ai && ai.chosenQualifier
-    // if Gemini already gave you the whole thing, use it
-    ? (ai.chosenQualifier.includes('.') 
-        ? ai.chosenQualifier 
-        // otherwise prefix with the rubric.code and a dot
-        : `${rubric.code}.${ai.chosenQualifier}`)
-    : null;
+    // **FIX STARTS HERE**
+    // Safely get the qualifier code regardless of whether the AI returned a string or an object.
+    const rawQualifier = ai?.chosenQualifier;
+    const chosenQualifierCode = typeof rawQualifier === 'string'
+        ? rawQualifier
+        : (typeof rawQualifier === 'object' && rawQualifier !== null)
+        ? rawQualifier.code
+        : null;
+    // **FIX ENDS HERE**
 
-    // now lookup against the rubric.otherQualifiers
+    const fullQualifierCode =
+      chosenQualifierCode && chosenQualifierCode.includes('.')
+        ? chosenQualifierCode // It's already the full code
+        : chosenQualifierCode
+        ? `${rubric.code}.${chosenQualifierCode}` // Prepend base code to suffix
+        : null;
+
+    // Now lookup against the rubric.otherQualifiers
     const appliedQualifier: QualifierDto | null =
-    fullQualifierCode
+      fullQualifierCode
         ? rubric.otherQualifiers.find(q => q.code === fullQualifierCode) || null
         : null;
       // attributes

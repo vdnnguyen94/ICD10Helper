@@ -65,3 +65,38 @@ export class CciUnifiedResponseDto {
   @Field(() => Float, { description: 'Search time in milliseconds' })
   searchTimeMs: number;
 }
+
+@ObjectType({ description: 'Per-code comparison between OpenAI & Gemini' })
+export class CciDualComparisonDetail {
+  @Field()                code: string;
+  @Field()                chosenByOpenAI: boolean;
+  @Field()                chosenByGemini: boolean;
+  @Field()                qualifierMatch: boolean;
+  @Field(() => AppliedAttribute, { nullable: true }) openaiAttributes: AppliedAttribute | null;
+  @Field(() => AppliedAttribute, { nullable: true }) geminiAttributes: AppliedAttribute | null;
+  @Field()                attributeMatch_S: boolean;
+  @Field()                attributeMatch_L: boolean;
+  @Field()                attributeMatch_E: boolean;
+  @Field()                fullMatch: boolean;
+}
+
+@ObjectType({ description: 'Aggregate stats across both AIs' })
+export class CciDualComparisonSummary {
+  @Field() totalCodes: number;
+  @Field() openaiChosenCount: number;
+  @Field() geminiChosenCount: number;
+  @Field() codesAgreed: number;
+  @Field() codesDisagreed: number;
+  @Field() fullMatches: number;
+  @Field() partialMatches: number;
+}
+
+@ObjectType({ description: 'Dual-AI response, with both raw lists plus comparison' })
+export class CciDualEnhancedResponseDto {
+  @Field(() => [CciUnifiedResultItem])  openai:  CciUnifiedResultItem[];
+  @Field(() => [CciUnifiedResultItem])  gemini:  CciUnifiedResultItem[];
+  @Field(() => CciDualComparisonSummary) summary: CciDualComparisonSummary;
+  @Field(() => [CciDualComparisonDetail]) details: CciDualComparisonDetail[];
+  @Field()                              searchTimeMsOpenAI:  number;
+  @Field()                              searchTimeMsGemini: number;
+}
