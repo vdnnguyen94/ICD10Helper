@@ -238,6 +238,11 @@ type Query {
   lookupICD10(term: String!): ICD10CodeResponse!
   lookupCount: Float!
   cciEnhancedSearch(term: String!): CciEnhancedResponseDto!
+
+  """
+  Lookup a single CCI rubric by its full code (e.g. "3.IP.10" or "3.IP.10.VX")
+  """
+  cciSearchByCode(code: String!): CciEnhancedResponseDto!
   cciAiEnhancedSearch(term: String!): CciUnifiedResponseDto!
 
   """

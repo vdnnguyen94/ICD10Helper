@@ -270,5 +270,47 @@ private buildMetaAIPrompt(
 
   return lines.join('\n');
 }
+   /**
+   * Exact‐code lookup: fast findOne() + reuse your assembler
+   */
+async searchByCode(code: string): Promise<CciEnhancedResponseDto> {
+  // 1) Split off qualifier suffix if present
+  const parts   = code.split('.');
+  const baseCode = parts.slice(0, 3).join('.'); 
+
+  // 2) Fetch the raw document from Mongo
+  const db   = this.mongo.db(this.dbName);
+  const coll = db.collection<any>(this.catalogColl);
+  const raw  = await coll.findOne({ code: baseCode });
+
+  if (!raw) {
+    return { status: 'not_found', items: [] };
+  }
+
+  // 3) **Normalize all the array‐fields** so none are null/undefined
+  const normalized: any = {
+    code:             raw.code,
+    description:      raw.description,
+    includes:         raw.includes   ?? [],
+    excludes:         raw.excludes   ?? [],
+    codeAlso:         raw.code_also  ?? [],   // map DB “code_also” → DTO “codeAlso”
+    note:             raw.note       ?? [],
+    otherQualifiers:  raw.qualifiers ?? [],
+    appliedQualifiers: [],  // nothing applied on an exact lookup
+    attributes:       raw.attributes ?? {},
+    appliedAttributes: [],  // ditto
+    similarityScore:  null,
+  };
+
+  // 4) Enrich with your existing helper
+  const [enriched] = await this.assembleRubricsWithAttributes([normalized]);
+
+
+
+  return {
+    status: 'matched',
+    items:  [enriched],
+  };
+}
 
 }
