@@ -31,3 +31,8 @@ build/
 client/dist/
 server/dist/
 server/gcp-key.json
+
+# ignore any zip or compressed archives
+*.zip
+*.tar.gz
+*.tgz

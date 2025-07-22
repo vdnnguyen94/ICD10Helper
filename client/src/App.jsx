@@ -12,6 +12,7 @@ import Footer from './pages/FooterPage'; //
 import HomePage from './pages/HomePage';
 import ICD10LookupPage from './pages/ICD10LookupPage';
 import CCILookupPage from './pages/CCILookupPage';
+import CciEnhancePage from './pages/CciEnhancePage';
 import OutpatientPage from './pages/OutPatientPage'; //
 import InpatientPage from './pages/InPatientPage'; //
 import ContactPage from './pages/ContactPage'; //
@@ -48,6 +49,9 @@ function NavBar() { //
           <NavLink to="/cci-lookup" className={linkClasses}>
             CCI Lookup
           </NavLink>
+          <NavLink to="/cci-enhance" className={linkClasses}>
+            CCI Enhance
+          </NavLink>
           {/* <NavLink to="/outpatient" className={linkClasses}>
             Outpatient Coding
           </NavLink>
@@ -75,6 +79,7 @@ export default function App() { //
             <Route path="/icd10-lookup" element={<ICD10LookupPage />} />
             {/* Placeholder route for CCI - to be created */}
             <Route path="/cci-lookup" element={<CCILookupPage />} />
+            <Route path="/cci-enhance" element={<CciEnhancePage />} />
             <Route path="/outpatient" element={<OutpatientPage />} /> {/* */}
             <Route path="/inpatient" element={<InpatientPage />} /> {/* */}
             <Route path="/contact" element={<ContactPage />} /> {/* */}
