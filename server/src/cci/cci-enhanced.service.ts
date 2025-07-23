@@ -96,7 +96,7 @@ export class CciEnhancedService implements OnModuleInit {
           path: 'embedding',
           queryVector: queryVector,
           numCandidates: 200,
-          limit: 50,
+          limit: 30,
         },
       },
       {
@@ -232,7 +232,7 @@ private buildMetaAIPrompt(
     ` 3. For each attribute domain S, L, E:`,
     `    – If Mandatory, pick the best match whose description appears in the term;`,
     `    – If Optional, pick the option whose description appears in the term;`,
-    `      if none apply, return "-";`,
+    `      If Optional, none apply, return "-" for that code attribute for example "name" :S, "code: "-', "type" : "Optional";`,
     `    – If N/A, return "/".`,
     `    – Do not select more than one code per domain.`,
     ``,

@@ -15,7 +15,7 @@ export class OpenAIService {
 
   // Centralize model names for easier updates
   private readonly embeddingModel = process.env.OPENAI_EMBEDDING_MODEL || 'text-embedding-3-small';
-  private readonly chatModel = process.env.OPENAI_CHAT_MODEL || 'gpt-4o';
+  private readonly chatModel = process.env.OPENAI_CHAT_MODEL || 'gpt-4o-mini';
 
   constructor() {
     if (!process.env.OPENAI_API_KEY) {
