@@ -155,6 +155,7 @@ const ClickableText = ({ text }) => {
         i % 2 === 1 ? (
           <a
             key={i}
+            // Ensure the href points to the new specific search page
             href={`/cci-specific-search/${part}`}
             target="_blank"
             rel="noopener noreferrer"
