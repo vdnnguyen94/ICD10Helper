@@ -233,6 +233,7 @@ private buildMetaAIPrompt(
     `    – If Mandatory, pick the best match whose description appears in the term;`,
     `    – If Optional, pick the option whose description appears in the term;`,
     `      If Optional, none apply, return "-" for that code attribute for example "name" :S, "code: "-', "type" : "Optional";`,
+    ` IF OPTIONAL, code available and descriptions does not mentioned in the searchterm return: "-"`,
     `    – If N/A, return "/".`,
     `    – Do not select more than one code per domain.`,
     ``,
