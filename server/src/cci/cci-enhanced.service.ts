@@ -248,7 +248,7 @@ private buildMetaAIPrompt(
     `       { "type":"L", "code":"/" },`,
     `       { "type":"E", "code":"/" }`,
     `     ],`,
-    `     "rationale": "explanations 35-50 words provide reasons for chosen rubric, chosen qualifier and chosen Coding attributes. If Code Also of others rubric applied in here…"` ,
+    `     "rationale": "final rubric name, chosen qualifier and chosen attributes. reasons for chosen field, if Code Also applied"` ,
     `   },`,
     `   …`,
     ` ]`,
