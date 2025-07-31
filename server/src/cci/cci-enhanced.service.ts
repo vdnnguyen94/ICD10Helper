@@ -96,7 +96,7 @@ export class CciEnhancedService implements OnModuleInit {
           path: 'embedding',
           queryVector: queryVector,
           numCandidates: 200,
-          limit: 30,
+          limit: 40,
         },
       },
       {
