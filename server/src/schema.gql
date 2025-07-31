@@ -232,6 +232,15 @@ type CciDualEnhancedResponseDto {
   searchTimeMsGemini: Float!
 }
 
+"""Basic ICD-10-CA record"""
+type IcdCodeItem {
+  code: String!
+  description: String!
+  includes: [String!]
+  excludes: [String!]
+  notes: [String!]
+}
+
 type Query {
   hello: String!
   checkEnv: String!
@@ -250,6 +259,8 @@ type Query {
   """
   cciGeminiEnhancedSearch(term: String!): CciUnifiedResponseDto!
   cciDualEnhancedSearch(term: String!): CciDualEnhancedResponseDto!
+  getIcdContext(code: String!): [IcdCodeItem!]!
+  getIcdByBlockRange(start: String!, end: String!): [IcdCodeItem!]!
 }
 
 type Mutation {

@@ -22,6 +22,7 @@ import { CciDualEnhancedResolver }   from './cci/cci-dual-enhanced.resolver';
 
 import { CciGeminiEnhancedService } from './cci/cci-gemini-enhanced.service';
 import { CciGeminiEnhancedResolver } from './cci/cci-gemini-enhanced.resolver';
+import { IcdModule } from './icd/icd.module';
 
 import * as dotenv from 'dotenv';
 dotenv.config();
@@ -34,6 +35,7 @@ dotenv.config();
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
+    IcdModule,
   ],  
   providers: [
     // 1) Provide a connected MongoClient
