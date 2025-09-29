@@ -241,6 +241,33 @@ type IcdCodeItem {
   notes: [String!]
 }
 
+"""A single, fully-rationalized ICD-10-CA code within a final package."""
+type FinalCodingResult {
+  code: String!
+  description: String!
+
+  """The rationale for choosing this code."""
+  rationale: String!
+
+  """The diagnosis type (e.g., M, MP, 1, 2, 3, 9, OP)."""
+  diagnosisType: String!
+
+  """The diagnosis cluster (e.g., A, B) to link related codes."""
+  diagnosisCluster: String
+
+  """The diagnosis prefix (e.g., Q, 5, 6)."""
+  prefix: String
+}
+
+"""The complete, AI-generated coding package for a clinical scenario."""
+type FinalCodingPackage {
+  results: [FinalCodingResult!]!
+
+  """A narrative summary of the coding decisions."""
+  summary: String!
+  processingTimeMs: Float!
+}
+
 type Query {
   hello: String!
   checkEnv: String!
@@ -261,6 +288,9 @@ type Query {
   cciDualEnhancedSearch(term: String!): CciDualEnhancedResponseDto!
   getIcdContext(code: String!): [IcdCodeItem!]!
   getIcdByBlockRange(start: String!, end: String!): [IcdCodeItem!]!
+  getIcdAbove(code: String!): [IcdCodeItem!]!
+  getIcdBelow(code: String!): [IcdCodeItem!]!
+  getFullCodingPackage(term: String!): FinalCodingPackage!
 }
 
 type Mutation {

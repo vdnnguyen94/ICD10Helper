@@ -31,19 +31,30 @@ export class IcdReadResolver {
     return all.slice(start, end);
   }
 
-  @Query(() => [IcdCodeItem])
+ @Query(() => [IcdCodeItem])
   async getIcdByBlockRange(
     @Args('start') start: string,
     @Args('end') end: string
   ): Promise<IcdCodeItem[]> {
-    const nextEnd = this.incrementCode(end);
     const collection = this.db.collection<IcdCodeItem>('ICD10CA_Catalog');
+    let filter;
+
+    // If the AI is looking for all sub-codes within a single parent block.
+    // This is the pattern you observed.
+    if (start === end) {
+      // A regular expression is more robust for finding all codes with a given prefix.
+      // This handles cases like 'L03' as well as more specific ones like 'L03.1'.
+      filter = { code: { $regex: `^${start}` } };
+    } else {
+      // For a true range, we still need to calculate the upper bound.
+      // The original logic is kept for now but the incrementCode function should
+      // be made more robust or replaced if more complex ranges are needed.
+      const nextEnd = this.incrementCode(end);
+      filter = { code: { $gte: start, $lt: nextEnd } };
+    }
 
     return collection
-      .find(
-        { code: { $gte: start, $lt: nextEnd } },
-        { projection: { embedding: 0, search_text: 0 } }
-      )
+      .find(filter, { projection: { embedding: 0, search_text: 0 } })
       .sort({ code: 1 })
       .toArray();
   }

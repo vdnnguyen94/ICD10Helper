@@ -184,4 +184,25 @@ The user will provide the intervention term or scenario.`;
       messages,
     });
   }
+
+    /**
+   * NEW: A dedicated method for chat completions that can use tools (function calling).
+   * This will be used by the ICD-10-CA multi-round service.
+   * @param messages The conversation history.
+   * @param tools The list of functions the AI can call.
+   * @returns A promise that resolves to the chat completion response.
+   */
+  async chatCompletionWithTools(
+    messages: OpenAI.Chat.Completions.ChatCompletionMessageParam[],
+    tools: OpenAI.Chat.Completions.ChatCompletionTool[],
+  ): Promise<OpenAI.Chat.Completions.ChatCompletion> {
+    const options: OpenAI.Chat.Completions.ChatCompletionCreateParams = {
+      model: this.chatModel,
+      messages,
+      tools: tools,
+      tool_choice: 'auto', // Let the model decide when to call a function
+    };
+    
+    return this.client.chat.completions.create(options);
+  }
 }
