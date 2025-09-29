@@ -31,39 +31,26 @@ export class IcdReadResolver {
     return all.slice(start, end);
   }
 
- @Query(() => [IcdCodeItem])
+  @Query(() => [IcdCodeItem], { description: 'Gets all codes within a block or a range of blocks.' })
   async getIcdByBlockRange(
     @Args('start') start: string,
     @Args('end') end: string
   ): Promise<IcdCodeItem[]> {
-    const collection = this.db.collection<IcdCodeItem>('ICD10CA_Catalog');
-    let filter;
-
-    // If the AI is looking for all sub-codes within a single parent block.
-    // This is the pattern you observed.
+    
+    // If the AI is looking for a single code's context.
     if (start === end) {
-      // A regular expression is more robust for finding all codes with a given prefix.
-      // This handles cases like 'L03' as well as more specific ones like 'L03.1'.
-      filter = { code: { $regex: `^${start}` } };
-    } else {
-      // For a true range, we still need to calculate the upper bound.
-      // The original logic is kept for now but the incrementCode function should
-      // be made more robust or replaced if more complex ranges are needed.
-      const nextEnd = this.incrementCode(end);
-      filter = { code: { $gte: start, $lt: nextEnd } };
+      // Call the getIcdContext method to get the code plus 20 above and 20 below.
+      return this.getIcdContext(start);
     }
+    
+    // Logic for a true range search (e.g., L03 to L05)
+    const collection = this.db.collection<IcdCodeItem>('ICD10CA_Catalog');
+    const filter = { code: { $gte: start, $lte: `${end}z` } };
 
     return collection
       .find(filter, { projection: { embedding: 0, search_text: 0 } })
       .sort({ code: 1 })
       .toArray();
-  }
-
-  private incrementCode(code: string): string {
-    const letter = code[0];
-    const number = parseInt(code.slice(1), 10);
-    const nextNumber = number + 1;
-    return `${letter}${nextNumber.toString().padStart(2, '0')}`;
   }
 
   @Query(() => [IcdCodeItem])

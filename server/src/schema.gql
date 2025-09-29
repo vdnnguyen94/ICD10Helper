@@ -277,6 +277,25 @@ type FinalCodingPackage {
   processingTimeMs: Float!
 }
 
+"""AI-enhanced ICD-10-CA result"""
+type IcdAiEnhancedResult {
+  code: String!
+  description: String!
+  includes: [String!]
+  excludes: [String!]
+  notes: [String!]
+  isChosen: Boolean!
+  rationale: String
+  similarityScore: Float
+}
+
+"""Wrapper for AI-enhanced ICD results"""
+type IcdAiEnhancedResponse {
+  items: [IcdAiEnhancedResult!]!
+  searchTimeMs: Float!
+  status: String
+}
+
 type Query {
   hello: String!
   checkEnv: String!
@@ -296,6 +315,8 @@ type Query {
   cciGeminiEnhancedSearch(term: String!): CciUnifiedResponseDto!
   cciDualEnhancedSearch(term: String!): CciDualEnhancedResponseDto!
   getIcdContext(code: String!): [IcdCodeItem!]!
+
+  """Gets all codes within a block or a range of blocks."""
   getIcdByBlockRange(start: String!, end: String!): [IcdCodeItem!]!
   getIcdAbove(code: String!): [IcdCodeItem!]!
   getIcdBelow(code: String!): [IcdCodeItem!]!
@@ -308,6 +329,9 @@ type Query {
   """
   smartSearchContext(code: String!): [IcdCodeItem!]!
   getFullCodingPackage(term: String!): FinalCodingPackage!
+
+  """Performs a vector search on the ICD-10-CA catalog."""
+  icdVectorSearch(term: String!): IcdAiEnhancedResponse!
 }
 
 type Mutation {

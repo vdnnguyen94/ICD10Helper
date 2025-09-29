@@ -19,8 +19,8 @@ const INCREMENT_LOOKUP_COUNT = gql`
 
 // 1. For Vector Search Mode
 const ICD_VECTOR_SEARCH = gql`
-  query Search($term: String!) {
-    search(term: $term) {
+  query IcdVectorSearch($term: String!) { 
+    icdVectorSearch(term: $term) {
       status
       searchTimeMs
       items {
@@ -164,6 +164,11 @@ export default function IcdEnhancePage() {
   const [error, setError] = useState(null);
   const lookupSectionRef = useRef(null);
 
+    useEffect(() => {
+        setResults(null);
+        setError(null);
+    }, [searchMode]);
+
   const { data: countData } = useQuery(GET_LOOKUP_COUNT);
   const [incrementCount] = useMutation(INCREMENT_LOOKUP_COUNT, { refetchQueries: [{ query: GET_LOOKUP_COUNT }] });
 
@@ -206,22 +211,27 @@ export default function IcdEnhancePage() {
   const handleExampleClick = (term) => { setSearchTerm(term); performLookup(term); };
   
   useEffect(() => { if (searchTerm) setError(null); }, [searchTerm]);
-  useEffect(() => {
-    setResults(null);
-    setError(null);
-  }, [searchMode]);
+
   const renderResults = () => {
     if (isLoading) return <LoadingSkeleton />;
     if (error) return <div className="p-4 bg-red-500/20 text-red-300 border border-red-500 rounded-lg flex items-center"><AlertCircle size={20} className="mr-3 text-red-400" />{error}</div>;
-    if (!results) return null;
-    if (results.status === 'not_found' || (results.items && results.items.length === 0) || (results.results && results.results.length === 0)) {
-        return <div className="p-4 bg-yellow-500/20 text-yellow-300 border border-yellow-500 rounded-lg flex items-center"><Info size={20} className="mr-3 text-yellow-400" />No results found for the given term.</div>;
-    }
-    
+    if (!results) return null; // Exit if there are no results at all
+
     switch(searchMode) {
-        case 'vector': return <div className="space-y-4">{results.items.map(item => <IcdVectorResultCard key={item.code} item={item} />)}</div>;
-        case 'ai': return <IcdFinalPackageView data={results} />;
-        default: return null;
+        case 'vector':
+            // --- SAFETY CHECK ---
+            // Only render if the 'results' object has the '.items' property.
+            if (!results.items) return null; 
+            return <div className="space-y-4">{results.items.map(item => <IcdVectorResultCard key={item.code} item={item} />)}</div>;
+
+        case 'ai':
+            // --- SAFETY CHECK ---
+            // Only render if the 'results' object has the '.results' property.
+            if (!results.results) return null;
+            return <IcdFinalPackageView data={results} />;
+            
+        default:
+            return null;
     }
   };
 

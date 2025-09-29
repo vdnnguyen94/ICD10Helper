@@ -5,6 +5,7 @@ import { IcdReadResolver } from './icd-read.resolver';
 import { IcdAiResolver } from './icd-ai.resolver';
 import { IcdEnhancedService } from './icd-vector.service';
 import { IcdAiService } from './icd-ai.service';
+import { IcdEnhancedResolver } from './icd-enhanced.resolver';
 import { OpenAIService } from '../openai.service';
 import { MongoClient } from 'mongodb';
 
@@ -13,7 +14,7 @@ import { MongoClient } from 'mongodb';
     // Resolvers
     IcdReadResolver, // This is now a dependency for IcdAiService
     IcdAiResolver,
-
+    IcdEnhancedResolver,
     // Services
     IcdEnhancedService,
     IcdAiService,
