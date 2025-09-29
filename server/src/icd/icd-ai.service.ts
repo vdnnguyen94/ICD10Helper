@@ -80,14 +80,33 @@ export class IcdAiService {
         continue; 
       }
       
-        try {
+    try {
         if (responseMessage.content) {
-            const finalPackage = JSON.parse(responseMessage.content);
+            // 1. AI returns its chosen package (without includes, excludes, notes)
+            const partialPackage = JSON.parse(responseMessage.content);
+
+            // 2. Hydrate the results with full details
+            const hydratedResults = await Promise.all(partialPackage.results.map(async (result) => {
+                // Use your IcdReadResolver to fetch the full item by code
+                // (You might need a new method in IcdReadResolver like `getIcdByCode`)
+                const fullCodeDetails = await this.icdReadResolver.getIcdByCode(result.code);
+                
+                return {
+                    ...result, // Keep AI's rationale, diagnosisType, etc.
+                    includes: fullCodeDetails?.includes,
+                    excludes: fullCodeDetails?.excludes,
+                    notes: fullCodeDetails?.notes,
+                };
+            }));
+            
+            // 3. Assemble the final package with hydrated results
+            const finalPackage = {
+                ...partialPackage,
+                results: hydratedResults,
+            };
+
             return { ...finalPackage, processingTimeMs: Date.now() - start };
-        } else {
-            this.logger.error('AI returned a final response with null content.');
-            throw new Error('AI returned an empty final response.');
-        }
+          }
         } catch (error) {
         this.logger.error('Failed to parse final AI response:', responseMessage.content, error);
         throw new Error('AI returned a non-JSON or invalid final response.');

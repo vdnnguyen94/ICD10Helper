@@ -543,6 +543,11 @@ export default function CciEnhancePage() {
   const handleExampleClick = (term) => { setSearchTerm(term); performLookup(term); };
   
   useEffect(() => { if (searchTerm) setError(null); }, [searchTerm]);
+  
+  useEffect(() => {
+    setResults(null);
+    setError(null);
+  }, [searchMode]);
 
   const renderResults = () => {
     if (isLoading) return <LoadingSkeleton />;

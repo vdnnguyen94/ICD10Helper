@@ -257,6 +257,15 @@ type FinalCodingResult {
 
   """The diagnosis prefix (e.g., Q, 5, 6)."""
   prefix: String
+
+  """List of inclusion terms for this code."""
+  includes: [String!]
+
+  """List of exclusion terms for this code."""
+  excludes: [String!]
+
+  """List of notes for this code."""
+  notes: [String!]
 }
 
 """The complete, AI-generated coding package for a clinical scenario."""
@@ -290,6 +299,14 @@ type Query {
   getIcdByBlockRange(start: String!, end: String!): [IcdCodeItem!]!
   getIcdAbove(code: String!): [IcdCodeItem!]!
   getIcdBelow(code: String!): [IcdCodeItem!]!
+
+  """Fetches a single ICD-10-CA item by its exact code."""
+  getIcdByCode(code: String!): IcdCodeItem
+
+  """
+  Smart search for an ICD code. Validates format and finds closest match if the exact code is not found.
+  """
+  smartSearchContext(code: String!): [IcdCodeItem!]!
   getFullCodingPackage(term: String!): FinalCodingPackage!
 }
 

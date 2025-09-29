@@ -21,6 +21,15 @@ export class FinalCodingResult {
 
   @Field(() => String, { nullable: true, description: 'The diagnosis prefix (e.g., Q, 5, 6).' })
   prefix?: string;
+
+  @Field(() => [String], { nullable: true, description: 'List of inclusion terms for this code.' })
+  includes?: string[];
+
+  @Field(() => [String], { nullable: true, description: 'List of exclusion terms for this code.' })
+  excludes?: string[];
+
+  @Field(() => [String], { nullable: true, description: 'List of notes for this code.' })
+  notes?: string[];
 }
 
 @ObjectType({ description: 'The complete, AI-generated coding package for a clinical scenario.' })

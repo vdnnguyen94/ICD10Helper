@@ -17,6 +17,8 @@ import OutpatientPage from './pages/OutPatientPage'; //
 import InpatientPage from './pages/InPatientPage'; //
 import ContactPage from './pages/ContactPage'; //
 import CciSpecificSearchPage from './pages/CciSpecificSearchPage';
+import IcdEnhancePage from './pages/IcdEnhancePage'; 
+import IcdBlockSearchPage from './pages/IcdBlockSearchPage'; 
 // The Header component was defined but not used in the previous App.jsx.
 // If you intend to use it, you can re-implement its logic.
 // For now, it's simplified or can be removed if not needed.
@@ -49,6 +51,8 @@ function NavBar() { //
           <NavLink to="/cci-lookup" className={linkClasses}>
             CCI Lookup
           </NavLink>
+          <NavLink to="/icd-enhance" className={linkClasses}>ICD-10 Enhance</NavLink> 
+          <NavLink to="/icd-block-search" className={linkClasses}>ICD-10 Block</NavLink> 
           <NavLink to="/cci-enhance" className={linkClasses}>
             CCI Enhance
           </NavLink>
@@ -80,6 +84,8 @@ export default function App() { //
           <Routes> {/* */}
             <Route path="/" element={<HomePage />} />
             <Route path="/icd10-lookup" element={<ICD10LookupPage />} />
+            <Route path="/icd-enhance" element={<IcdEnhancePage />} /> {/* <-- NEW */}
+            <Route path="/icd-block-search/:code?" element={<IcdBlockSearchPage />} />
             {/* Placeholder route for CCI - to be created */}
             <Route path="/cci-lookup" element={<CCILookupPage />} />
             <Route path="/cci-enhance" element={<CciEnhancePage />} />
